@@ -216,10 +216,10 @@ Table of Contents
    (such as a mobile phone) or at the edge of the constrained network
    (such as a gateway).  Thing-to-thing interactions over constrained
    networks are also relevant since both endpoints would then benefit
-   from the lightweight properties of the protocol.  EDHOC could e.g. be
-   run when a device connects for the first time, or to establish fresh
-   keys which are not revealed by a later compromise of the long-term
-   keys.  Further security properties are described in Section 7.1.
+   from the lightweight properties of the protocol.  EDHOC could e.g.,
+   be run when a device connects for the first time, or to establish
+   fresh keys which are not revealed by a later compromise of the long-
+   term keys.  Further security properties are described in Section 7.1.
 
    EDHOC enables the reuse of the same lightweight primitives as OSCORE:
    CBOR for encoding, COSE for cryptography, and CoAP for transport.  By
@@ -528,11 +528,11 @@ Table of Contents
    in a CoAP response and an associated CoAP request.  In the absense of
    correlation between a message received and a message previously sent
    inherent to the transport, the EDHOC connection identifiers may be
-   added, e.g. by prepending the appropriate connection identifier (when
-   available from the EDHOC protocol) to the EDHOC message.  Transport
-   of EDHOC in CoAP payloads is described in Appendix A.3, which also
-   shows how to use connection identifiers and message_1 indication with
-   CoAP.
+   added, e.g., by prepending the appropriate connection identifier
+   (when available from the EDHOC protocol) to the EDHOC message.
+   Transport of EDHOC in CoAP payloads is described in Appendix A.3,
+   which also shows how to use connection identifiers and message_1
+   indication with CoAP.
 
    The Initiator and the Responder need to have agreed on a transport to
    be used for EDHOC, see Section 3.9.
@@ -599,7 +599,7 @@ Table of Contents
 
    The authentication key MUST be a signature key or static Diffie-
    Hellman key.  The Initiator and the Responder MAY use different types
-   of authentication keys, e.g. one uses a signature key and the other
+   of authentication keys, e.g., one uses a signature key and the other
    uses a static Diffie-Hellman key.  When using a signature key, the
    authentication is provided by a signature.  When using a static
    Diffie-Hellman key the authentication is provided by a Message
@@ -627,7 +627,7 @@ Table of Contents
    The authentication credentials, CRED_I and CRED_R, contain the public
    authentication key of the Initiator and the Responder, respectively.
    The Initiator and the Responder MAY use different types of
-   credentials, e.g. one uses an UCCS and the other uses an X.509
+   credentials, e.g., one uses an UCCS and the other uses an X.509
    certificate.
 
    The credentials CRED_I and CRED_R are signed or MAC:ed (in the
@@ -1198,7 +1198,7 @@ Table of Contents
    structures, only a subset of the parameters is included in the EDHOC
    messages, see Appendix C.3.  The unprotected COSE header in
    COSE_Sign1, and COSE_Encrypt0 (not included in the EDHOC message) MAY
-   contain parameters (e.g. 'alg').
+   contain parameters (e.g., 'alg').
 
 5.1.  Message Processing Outline
 
@@ -1284,10 +1284,10 @@ Table of Contents
       be changed based on previous error messages.  However, the list
       SUITES_I sent to the Responder MAY be truncated such that cipher
       suites which are the least preferred are omitted.  The amount of
-      truncation MAY be changed between sessions, e.g. based on previous
-      error messages (see next bullet), but all cipher suites which are
-      more preferred than the least preferred cipher suite in the list
-      MUST be included in the list.
+      truncation MAY be changed between sessions, e.g., based on
+      previous error messages (see next bullet), but all cipher suites
+      which are more preferred than the least preferred cipher suite in
+      the list MUST be included in the list.
 
    *  The Initiator MUST select its most preferred cipher suite,
       conditioned on what it can assume to be supported by the
@@ -1322,7 +1322,7 @@ Table of Contents
    If any processing step fails, the Responder SHOULD send an EDHOC
    error message back, formatted as defined in Section 6, and the
    session MUST be discontinued.  Sending error messages is essential
-   for debugging but MAY e.g. be skipped due to denial of service
+   for debugging but MAY e.g., be skipped due to denial of service
    reasons, see Section 7.
 
 5.3.  EDHOC Message 2
@@ -1462,7 +1462,7 @@ Table of Contents
 
    If any processing step fails, the Initiator SHOULD send an EDHOC
    error message back, formatted as defined in Section 6.  Sending error
-   messages is essential for debugging but MAY e.g.be skipped if a
+   messages is essential for debugging but MAY e.g., be skipped if a
    session cannot be found or due to denial of service reasons, see
    Section 7.  If an error message is sent, the session MUST be
    discontinued.
@@ -1592,7 +1592,7 @@ Table of Contents
    Initiator is assured that the Responder has actually computed the key
    PRK_4x3m (explicit key confirmation).  This is similar to waiting for
    acknowledgement (ACK) in a transport protocol.  Explicit key
-   confirmation is e.g. assured when the Initiator has verified an
+   confirmation is e.g., assured when the Initiator has verified an
    OSCORE message or message_4 from the Responder.
 
 5.4.3.  Responder Processing of Message 3
@@ -1625,7 +1625,7 @@ Table of Contents
 
    If any processing step fails, the Responder SHOULD send an EDHOC
    error message back, formatted as defined in Section 6.  Sending error
-   messages is essential for debugging but MAY e.g.be skipped if a
+   messages is essential for debugging but MAY e.g., be skipped if a
    session cannot be found or due to denial of service reasons, see
    Section 7.  If an error message is sent, the session MUST be
    discontinued.
@@ -1772,7 +1772,7 @@ Table of Contents
 6.1.  Success
 
    Error code 0 MAY be used internally in an application to indicate
-   success, e.g. in log files.  ERR_INFO can contain any type of CBOR
+   success, e.g., in log files.  ERR_INFO can contain any type of CBOR
    item.  Error code 0 MUST NOT be used as part of the EDHOC message
    exchange flow.
 
@@ -1956,7 +1956,7 @@ Table of Contents
    SHOULD NOT permanently store the keying material PRK_4x3m and TH_4
    until the Initiator is assured that the Responder has actually
    computed the key PRK_4x3m (explicit key confirmation).  Explicit key
-   confirmation is e.g. assured when the Initiator has verified an
+   confirmation is e.g., assured when the Initiator has verified an
    OSCORE message or message_4 from the Responder.  After verifying
    message_3, the Responder is assured that the Initiator has calculated
    the key PRK_4x3m (explicit key confirmation) and that no other party
@@ -2116,7 +2116,7 @@ Table of Contents
    quality randomness.  Recent research has however found that
    implementations of these signature algorithms may be vulnerable to
    certain side-channel and fault injection attacks due to their
-   determinism.  See e.g.  Section 1 of
+   determinism.  See e.g., Section 1 of
    [I-D.mattsson-cfrg-det-sigs-with-noise] for a list of attack papers.
    As suggested in Section 6.1.2 of [I-D.ietf-cose-rfc8152bis-algs] this
    can be addressed by combining randomness and determinism.
@@ -2135,7 +2135,7 @@ Table of Contents
    The Initiator and the Responder are allowed to select the connection
    identifiers C_I and C_R, respectively, for the other party to use in
    the ongoing EDHOC protocol as well as in a subsequent application
-   protocol (e.g.  OSCORE [RFC8613]).  The choice of connection
+   protocol (e.g., OSCORE [RFC8613]).  The choice of connection
    identifier is not security critical in EDHOC but intended to simplify
    the retrieval of the right security context in combination with using
    short identifiers.  If the wrong connection identifier of the other
@@ -2168,10 +2168,10 @@ Table of Contents
    protect against such attacks EDHOC needs to be in its own zone.  To
    provide better protection against some forms of physical attacks,
    sensitive EDHOC data should be stored inside the SoC or encrypted and
-   integrity protected when sent on a data bus (e.g. between the CPU and
-   RAM or Flash).  Secure boot can be used to increase the security of
-   code and data in the Rich Execution Environment (REE) by validating
-   the REE image.
+   integrity protected when sent on a data bus (e.g., between the CPU
+   and RAM or Flash).  Secure boot can be used to increase the security
+   of code and data in the Rich Execution Environment (REE) by
+   validating the REE image.
 
 8.  IANA Considerations
 
@@ -2967,7 +2967,7 @@ C.1.  CBOR and CDDL
 
    The Concise Binary Object Representation (CBOR) [RFC8949] is a data
    format designed for small code size and small message size.  CBOR
-   builds on the JSON data model but extends it by e.g. encoding binary
+   builds on the JSON data model but extends it by e.g., encoding binary
    data directly without base64 conversion.  In addition to the binary
    CBOR encoding, CBOR also has a diagnostic notation that is readable
    and editable by humans.  The Concise Data Definition Language (CDDL)
@@ -3102,7 +3102,7 @@ Appendix D.  Test Vectors
    example the transcript hash TH_2 is used to denote both the output of
    the hash function and the input into the key derivation function,
    whereas the latter is a CBOR bstr encoding of the former.  Some
-   attempts are made to clarify that in this Appendix (e.g. using "CBOR
+   attempts are made to clarify that in this Appendix (e.g., using "CBOR
    encoded"/"CBOR unencoded").
 
    NOTE 2.  If not clear from the context, remember that CBOR sequences

@@ -518,7 +518,7 @@ Table of Contents
 
    *  demultiplex EDHOC messages from other types of messages, and
 
-   *  denial of service protection.
+   *  denial-of-service protection.
 
    Besides these common transport-oriented properties, EDHOC transport
    additionally needs to support the correlation between EDHOC messages,
@@ -609,7 +609,7 @@ Table of Contents
    Diffie-Hellman keys the Initiator's and Responder's private
    authentication keys are called I and R, respectively, and the public
    authentication keys are called G_I and G_R, respectively.  The
-   authentication key algorithm needs to specified with enough
+   authentication key algorithm needs to be specified with enough
    parameters to make it completely determined.  Note that for most
    signature algorithms, the signature is determined by the signature
    algorithm and the authentication key algorithm together.  For
@@ -630,7 +630,7 @@ Table of Contents
    credentials, e.g., one uses an UCCS and the other uses an X.509
    certificate.
 
-   The credentials CRED_I and CRED_R are signed or MAC:ed (in the
+   The credentials CRED_I and CRED_R are signed or MACed (in the
    Signature_OR_MAC field, depending on method) by the Initiator and the
    Responder, respectively, see Section 5.4 and Section 5.3.
 
@@ -796,7 +796,7 @@ Table of Contents
    keys.  ID_CRED_I and ID_CRED_R are transported in the 'ciphertext',
    see Section 5.4 and Section 5.3.
 
-   When ID_CRED_x does not contain the actual credential it may be very
+   When ID_CRED_x does not contain the actual credential, it may be very
    short, e.g., if the endpoints have agreed to use a key identifier
    parameter "kid" or "kid2".  The latter is introduced to allow more
    one-byte identifiers (see Section 8.6 and Section 8.7) which may be
@@ -963,9 +963,9 @@ Table of Contents
    but other parameters may need to be known out-of-band (e.g., which
    authentication method is used, see Section 3.2).
 
-   The purpose of the applicability statement is describe the intended
-   use of EDHOC to allow for the relevant processing and verifications
-   to be made, including things like:
+   The purpose of the applicability statement is to describe the
+   intended use of EDHOC to allow for the relevant processing and
+   verifications to be made, including things like:
 
    1.  How the endpoint detects that an EDHOC message is received.  This
        includes how EDHOC messages are transported, for example in the
@@ -1162,7 +1162,7 @@ Table of Contents
    registry (Section 8.1), context is a bstr defined by the application,
    and length is a uint defined by the application.  The (label,
    context) pair must be unique, i.e. a (label, context) MUST NOT be
-   used for two different purposes.  However an application can re-
+   used for two different purposes.  However, an application can re-
    derive the same key several times as long as it is done in a secure
    way.  For example, in most encryption algorithms the same (key,
    nonce) pair must not be reused.
@@ -1208,8 +1208,8 @@ Table of Contents
    protocol state containing identifiers, keys, etc. used for subsequent
    processing of protocol related data.  The protocol state is assumed
    to be associated to an applicability statement (Section 3.9) which
-   provides the context for how messages are transported, identified and
-   processed.
+   provides the context for how messages are transported, identified,
+   and processed.
 
    EDHOC messages SHALL be processed according to the current protocol
    state.  The following steps are expected to be performed at reception
@@ -1224,7 +1224,7 @@ Table of Contents
        created.  The Responder endpoint needs to make use of available
        Denial-of-Service mitigation (Section 7.5).
 
-   3.  If the message received is an error message then process
+   3.  If the message received is an error message, then process
        according to Section 6, else process as the expected next message
        according to the protocol state.
 
@@ -1266,7 +1266,7 @@ Table of Contents
       be truncated at the end, as is detailed in the processing steps
       below and Section 6.3.  One of the supported cipher suites is
       selected.  The selected suite is the first suite in the SUITES_I
-      CBOR array.  If a single supported cipher suite is conveyed then
+      CBOR array.  If a single supported cipher suite is conveyed, then
       that cipher suite is selected and SUITES_I is encoded as an int
       instead of an array.
 
@@ -1322,7 +1322,7 @@ Table of Contents
    If any processing step fails, the Responder SHOULD send an EDHOC
    error message back, formatted as defined in Section 6, and the
    session MUST be discontinued.  Sending error messages is essential
-   for debugging but MAY e.g., be skipped due to denial of service
+   for debugging but MAY e.g., be skipped due to denial-of-service
    reasons, see Section 7.
 
 5.3.  EDHOC Message 2
@@ -1463,7 +1463,7 @@ Table of Contents
    If any processing step fails, the Initiator SHOULD send an EDHOC
    error message back, formatted as defined in Section 6.  Sending error
    messages is essential for debugging but MAY e.g., be skipped if a
-   session cannot be found or due to denial of service reasons, see
+   session cannot be found or due to denial-of-service reasons, see
    Section 7.  If an error message is sent, the session MUST be
    discontinued.
 
@@ -1626,7 +1626,7 @@ Table of Contents
    If any processing step fails, the Responder SHOULD send an EDHOC
    error message back, formatted as defined in Section 6.  Sending error
    messages is essential for debugging but MAY e.g., be skipped if a
-   session cannot be found or due to denial of service reasons, see
+   session cannot be found or due to denial-of-service reasons, see
    Section 7.  If an error message is sent, the session MUST be
    discontinued.
 
@@ -2798,7 +2798,7 @@ A.3.  Transferring EDHOC over CoAP
    as an exchange of CoAP [RFC7252] messages.  CoAP is a reliable
    transport that can preserve packet ordering and handle message
    duplication.  CoAP can also perform fragmentation and protect against
-   denial of service attacks.  According to this specification, EDHOC
+   denial-of-service attacks.  According to this specification, EDHOC
    messages are carried in Confirmable messages, which is beneficial
    especially if fragmentation is used.
 

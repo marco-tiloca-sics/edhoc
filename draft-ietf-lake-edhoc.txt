@@ -1881,9 +1881,9 @@ Table of Contents
    If the selected cipher suite is not the first cipher suite which the
    Responder supports in SUITES_I received in message_1, then Responder
    MUST discontinue the protocol, see Section 5.2.3.  If SUITES_I in
-   message_1 is manipulated then the integrity verification of message_2
-   containing the transcript hash TH_2 will fail and the Initiator will
-   discontinue the protocol.
+   message_1 is manipulated, then the integrity verification of
+   message_2 containing the transcript hash TH_2 will fail and the
+   Initiator will discontinue the protocol.
 
 7.  Security Considerations
 
@@ -1923,7 +1923,7 @@ Table of Contents
    symmetrical group keys for bootstrapping.  EDHOC therefore strives to
    make the additional cost of using raw public keys and self-signed
    certificates as small as possible.  Raw public keys and self-signed
-   certificates are not a replacement for a public key infrastructure,
+   certificates are not a replacement for a public key infrastructure
    but SHOULD be used instead of symmetrical group keys for
    bootstrapping.
 
@@ -1931,7 +1931,7 @@ Table of Contents
    keys) does not compromise the security of completed EDHOC exchanges.
    Compromising the private authentication keys of one party lets an
    active attacker impersonate that compromised party in EDHOC exchanges
-   with other parties, but does not let the attacker impersonate other
+   with other parties but does not let the attacker impersonate other
    parties in EDHOC exchanges with the compromised party.  Compromise of
    the long-term keys does not enable a passive attacker to compromise
    future session keys.  Compromise of the HDKF input parameters (ECDH
@@ -1966,7 +1966,7 @@ Table of Contents
 
    Key compromise impersonation (KCI): In EDHOC authenticated with
    signature keys, EDHOC provides KCI protection against an attacker
-   having access to the long term key or the ephemeral secret key.  With
+   having access to the long-term key or the ephemeral secret key.  With
    static Diffie-Hellman key authentication, KCI protection would be
    provided against an attacker having access to the long-term Diffie-
    Hellman key, but not to an attacker having access to the ephemeral
@@ -2003,7 +2003,7 @@ Table of Contents
    attacks.  For this reason, the ephemeral keys MUST NOT be reused, and
    both parties SHALL generate fresh random ephemeral key pairs.
 
-   As discussed the [SIGMA], the encryption of message_2 does only need
+   As discussed, the [SIGMA], the encryption of message_2 does only need
    to protect against passive attacker as active attackers can always
    get the Responders identity by sending their own message_1.  EDHOC
    uses the Expand function (typically HKDF-Expand) as a binary additive
@@ -2024,7 +2024,7 @@ Table of Contents
    again.
 
    Requirement for how to securely generate, validate, and process the
-   ephermeral public keys depend on the elliptic curve.  For X25519 and
+   ephemeral public keys depend on the elliptic curve.  For X25519 and
    X448, the requirements are defined in [RFC7748].  For secp256r1,
    secp384r1, and secp521r1, the requirements are defined in Section 5
    of [SP-800-56A].  For secp256r1, secp384r1, and secp521r1, at least
@@ -2083,7 +2083,7 @@ Table of Contents
    An attacker can also send faked message_2, message_3, message_4, or
    error in an attempt to trick the receiving party to send an error
    message and discontinue the session.  EDHOC implementations MAY
-   evaluate if a received message is likely to have be forged by and
+   evaluate if a received message is likely to have been forged by and
    attacker and ignore it without sending an error message or
    discontinuing the session.
 
@@ -2094,14 +2094,14 @@ Table of Contents
    available, a truly random seed MUST be provided from an external
    source and used with a cryptographically secure pseudorandom number
    generator.  As each pseudorandom number must only be used once, an
-   implementation need to get a new truly random seed after reboot, or
+   implementation needs to get a new truly random seed after reboot, or
    continuously store state in nonvolatile memory, see ([RFC8613],
    Appendix B.1.1) for issues and solution approaches for writing to
    nonvolatile memory.  Intentionally or unintentionally weak or
    predictable pseudorandom number generators can be abused or exploited
    for malicious purposes.  [RFC8937] describes a way for security
    protocol implementations to augment their (pseudo)random number
-   generators using a long-term private keys and a deterministic
+   generators using a long-term private key and a deterministic
    signature function.  This improves randomness from broken or
    otherwise subverted random number generators.  The same idea can be
    used with other secrets and functions such as a Diffie-Hellman
@@ -2157,7 +2157,7 @@ Table of Contents
    If supported by the device, it is RECOMMENDED that at least the long-
    term private keys are stored in a Trusted Execution Environment (TEE)
    and that sensitive operations using these keys are performed inside
-   the TEE.  To achieve even higher security it is RECOMMENDED that in
+   the TEE.  To achieve even higher security, it is RECOMMENDED that in
    additional operations such as ephemeral key generation, all
    computations of shared secrets, and storage of the pseudorandom keys
    (PRK) can be done inside the TEE.  The use of a TEE enforces that
@@ -2287,7 +2287,7 @@ Table of Contents
    the new heading "EDHOC".  The registration procedure is "Expert
    Review".  The columns of the registry are Value, Description, and
    Reference, where Value is an integer and the other columns are text
-   strings.  The initial contents of the registry is shown in Figure 4.
+   strings.  The initial contents of the registry are shown in Figure 4.
 
 8.4.  EDHOC Error Codes Registry
 
@@ -2296,7 +2296,7 @@ Table of Contents
    "Specification Required".  The columns of the registry are ERR_CODE,
    ERR_INFO Type and Description, where ERR_CODE is an integer, ERR_INFO
    is a CDDL defined type, and Description is a text string.  The
-   initial contents of the registry is shown in Figure 6.
+   initial contents of the registry are shown in Figure 6.
 
 8.5.  COSE Header Parameters Registry
 

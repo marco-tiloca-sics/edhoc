@@ -188,7 +188,7 @@ Table of Contents
    lightweight authenticated key exchange protocol providing good
    security properties including perfect forward secrecy, identity
    protection, and cipher suite negotiation.  Authentication can be
-   based on raw public keys (RPK) or public key certificates, and
+   based on raw public keys (RPK) or public key certificates and
    requires the application to provide input on how to verify that
    endpoints are trusted.  This specification focuses on referencing
    instead of transporting credentials to reduce message overhead.
@@ -223,7 +223,7 @@ Table of Contents
 
    EDHOC enables the reuse of the same lightweight primitives as OSCORE:
    CBOR for encoding, COSE for cryptography, and CoAP for transport.  By
-   reusing existing libraries the additional code size can be kept very
+   reusing existing libraries, the additional code size can be kept very
    low.  Note that, while CBOR and COSE primitives are built into the
    protocol messages, EDHOC is not bound to a particular transport.
    Transfer of EDHOC messages in CoAP payloads is detailed in
@@ -279,7 +279,7 @@ Table of Contents
    Concise Data Definition Language (CDDL) is used to express CBOR data
    structures [RFC8949].  Examples of CBOR and CDDL are provided in
    Appendix C.1.  When referring to CBOR, this specification always
-   refer to Deterministically Encoded CBOR as specified in Sections
+   refers to Deterministically Encoded CBOR as specified in Sections
    4.2.1 and 4.2.2 of [RFC8949].
 
    The single output from authenticated encryption (including the
@@ -297,7 +297,7 @@ Table of Contents
 
    EDHOC specifies different authentication methods of the Diffie-
    Hellman key exchange: digital signatures and static Diffie-Hellman
-   keys.  This section outlines the digital signature based method.
+   keys.  This section outlines the digital signature-based method.
    Further details of protocol elements and other authentication methods
    are provided in the remainder of this document.
 
@@ -461,7 +461,7 @@ Table of Contents
 
    Connection identifiers in EDHOC are byte strings or integers, encoded
    in CBOR.  One byte connection identifiers (the integers -24 to 23 and
-   the empty bytestring h'') are realistic in many scenarios as most
+   the empty byte string h'') are realistic in many scenarios as most
    constrained devices only have a few connections.
 
 3.3.1.  Selection of Connection Identifiers
@@ -493,7 +493,7 @@ Table of Contents
    For OSCORE, the choice of a connection identifier results in the
    endpoint selecting its Recipient ID, see Section 3.1 of [RFC8613]),
    for which certain uniqueness requirements apply, see Section 3.3 of
-   [RFC8613]).  Therefore the Initiator and the Responder MUST NOT
+   [RFC8613]).  Therefore, the Initiator and the Responder MUST NOT
    select connection identifiers such that it results in same OSCORE
    Recipient ID.  Since the Recipient ID is a byte string and a EDHOC
    connection identifier is either a CBOR byte string or a CBOR integer,
@@ -504,7 +504,7 @@ Table of Contents
 3.4.  Transport
 
    Cryptographically, EDHOC does not put requirements on the lower
-   layers.  EDHOC is not bound to a particular transport layer, and can
+   layers.  EDHOC is not bound to a particular transport layer and can
    even be used in environments without IP.  The transport is
    responsible, where necessary, to handle:
 
@@ -520,12 +520,12 @@ Table of Contents
 
    *  denial of service protection.
 
-   Besides these common transport oriented properties, EDHOC transport
+   Besides these common transport-oriented properties, EDHOC transport
    additionally needs to support the correlation between EDHOC messages,
    including an indication of a message being message_1.  The
    correlation may reuse existing mechanisms in the transport protocol.
    For example, the CoAP Token may be used to correlate EDHOC messages
-   in a CoAP response and an associated CoAP request.  In the absense of
+   in a CoAP response and an associated CoAP request.  In the absence of
    correlation between a message received and a message previously sent
    inherent to the transport, the EDHOC connection identifiers may be
    added, e.g., by prepending the appropriate connection identifier
@@ -541,7 +541,7 @@ Table of Contents
 
    EDHOC enables public-key based authentication and supports various
    settings for how the other endpoint's public key is transported,
-   identified and trusted.
+   identified, and trusted.
 
    The authentication (public) key appears in different functions:
 
@@ -590,7 +590,7 @@ Table of Contents
    party, whereas a UCCS may be used when trust in the public key can be
    achieved by other means, or in the case of trust-on-first-use.  A
    UCCS as authentication credential provides essentially the same
-   trustworthiness as a self-signed certificate or CWT, but has smaller
+   trustworthiness as a self-signed certificate or CWT but has smaller
    size.
 
    More details are provided in the following subsections.
@@ -801,8 +801,8 @@ Table of Contents
    parameter "kid" or "kid2".  The latter is introduced to allow more
    one-byte identifiers (see Section 8.6 and Section 8.7) which may be
    useful in many scenarios since constrained devices only have a few
-   keys.  Note that in CBOR, the integers -24 to 23 and the empty
-   bytestring h'' are encoded as one byte.
+   keys.  Note that in CBOR, the integers -24 to 23 and the empty byte
+   string h'' are encoded as one byte.
 
    *  ID_CRED_x = { TBD2 : key_id_x }, where key_id_x : kid2, for x = I
       or R.

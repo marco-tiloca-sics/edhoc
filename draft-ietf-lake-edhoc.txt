@@ -202,7 +202,7 @@ Table of Contents
    EDHOC is designed for highly constrained settings making it
    especially suitable for low-power wide area networks [RFC8376] such
    as Cellular IoT, 6TiSCH, and LoRaWAN.  A main objective for EDHOC is
-   to be a lightweight authenticated key exchange for OSCORE, i.e. to
+   to be a lightweight authenticated key exchange for OSCORE, i.e., to
    provide authentication and session key establishment for IoT use
    cases such as those built on CoAP [RFC7252].  CoAP is a specialized
    web transfer protocol for use with constrained nodes and networks,
@@ -287,7 +287,8 @@ Table of Contents
 
    We use the term Unprotected CWT Claims Set (UCCS) just as in
    [I-D.ietf-rats-uccs] to denote a CBOR Web Token [RFC8392] without
-   wrapping it into a COSE object, i.e. a CBOR map consisting of claims.
+   wrapping it into a COSE object, i.e., a CBOR map consisting of
+   claims.
 
    Editor's note: If [I-D.ietf-rats-uccs] completes before this draft,
    make it a normative reference.
@@ -634,9 +635,9 @@ Table of Contents
    Responder, respectively, see Section 5.4 and Section 5.3.
 
    When the credential is a certificate, CRED_x is an end-entity
-   certificate (i.e. not the certificate chain), encoded as a CBOR bstr.
-   In X.509 and C509 certificates, signature keys typically have key
-   usage "digitalSignature" and Diffie-Hellman public keys typically
+   certificate (i.e., not the certificate chain), encoded as a CBOR
+   bstr.  In X.509 and C509 certificates, signature keys typically have
+   key usage "digitalSignature" and Diffie-Hellman public keys typically
    have key usage "keyAgreement".
 
    To prevent misbinding attacks in systems where an attacker can
@@ -1011,9 +1012,10 @@ Table of Contents
    applicability statement was the reason for failure: Integrity
    verification in message_2 or message_3 may fail not only because of
    wrong authentication credential.  For example, in case the Initiator
-   uses public key certificate by reference (i.e. not transported within
-   the protocol) then both endpoints need to use an identical data
-   structure as CRED_I or else the integrity verification will fail.
+   uses public key certificate by reference (i.e., not transported
+   within the protocol) then both endpoints need to use an identical
+   data structure as CRED_I or else the integrity verification will
+   fail.
 
    Note that it is not necessary for the endpoints to specify a single
    transport for the EDHOC messages.  For example, a mix of CoAP and
@@ -1121,7 +1123,7 @@ Table of Contents
    *  transcript_hash is a bstr set to one of the transcript hashes
       TH_2, TH_3, or TH_4 as defined in Sections 5.3.1, 5.4.1, and 4.1.
 
-   *  label is a tstr set to the name of the derived key or IV, i.e.
+   *  label is a tstr set to the name of the derived key or IV, i.e.,
       "K_2m", "IV_2m", "KEYSTREAM_2", "K_3m", "IV_3m", "K_3ae", or
       "IV_3ae".
 
@@ -1906,7 +1908,7 @@ Table of Contents
    from another session.
 
    EDHOC also adds selection of connection identifiers and downgrade
-   protected negotiation of cryptographic parameters, i.e. an attacker
+   protected negotiation of cryptographic parameters, i.e., an attacker
    cannot affect the negotiated parameters.  A single session of EDHOC
    does not include negotiation of cipher suites, but it enables the
    Responder to verify that the selected cipher suite is the most
@@ -2707,7 +2709,7 @@ A.1.  Selecting EDHOC Connection Identifier
    ID or Recipient ID depending on from which endpoint is the point of
    view, see Section 3.1 of [RFC8613].)
 
-   *  If the EDHOC connection identifier is numeric, i.e. encoded as a
+   *  If the EDHOC connection identifier is numeric, i.e., encoded as a
       CBOR integer on the wire, it is converted to a (naturally byte-
       string shaped) OSCORE Sender/Recipient ID equal to its CBOR
       encoded form.
@@ -2945,7 +2947,7 @@ Appendix B.  Compact Representation
    y-coordinate is required for validation or compatibily with APIs the
    value ~yp SHALL be set to zero.  For such use, the compact
    representation can be transformed into the SECG point compressed
-   format by prepending it with the single byte 0x02 (i.e.  M = 0x02 ||
+   format by prepending it with the single byte 0x02 (i.e., M = 0x02 ||
    X).
 
    Using compact representation have some security benefits.  An
@@ -3704,9 +3706,9 @@ D.1.3.  Message_3
    algorithm with selected cipher suite 0 is Ed25519.
 
    *  The message M_3 to be signed = [ "Signature1", << ID_CRED_I >>, <<
-      TH_3, CRED_I >>, MAC_3 ], i.e. ID_CRED_I encoded as CBOR bstr, the
-      concatenation of the CBOR byte strings TH_3 and CRED_I wrapped as
-      a CBOR bstr, and MAC_3 encoded as a CBOR bstr.
+      TH_3, CRED_I >>, MAC_3 ], i.e., ID_CRED_I encoded as CBOR bstr,
+      the concatenation of the CBOR byte strings TH_3 and CRED_I wrapped
+      as a CBOR bstr, and MAC_3 encoded as a CBOR bstr.
 
    *  The signing key is the private authentication key of the
       Initiator.
@@ -3983,8 +3985,8 @@ D.2.1.  Message_1
    16
 
    Note that since C_I is a byte string in the interval h'00' to h'2f',
-   it is encoded as the corresponding integer - 24, i.e. 0x16 = 22, 22 -
-   24 = -2, and -2 in CBOR encoding is equal to 0x21.
+   it is encoded as the corresponding integer - 24, i.e., 0x16 = 22, 22
+   - 24 = -2, and -2 in CBOR encoding is equal to 0x21.
 
    C_I (1 byte)
    21
@@ -4088,7 +4090,7 @@ D.2.2.  Message_2
    00
 
    Note that since C_R is a byte string in the interval h'00' to h'2f',
-   it is encoded as the corresponding integer - 24, i.e. 0x00 = 0, 0 -
+   it is encoded as the corresponding integer - 24, i.e., 0x00 = 0, 0 -
    24 = -24, and -24 in CBOR encoding is equal to 0x37.
 
    C_R (1 byte)
@@ -4262,7 +4264,7 @@ D.2.2.  Message_2
    Note that since ID_CRED_R contains a single 'kid' parameter, i.e.,
    ID_CRED_R = { 4 : kid_R }, only the byte string kid_R is conveyed in
    the plaintext encoded as a bstr_identifier. kid_R is encoded as the
-   corresponding integer - 24, i.e. 0x05 = 5, 5 - 24 = -19, and -19 in
+   corresponding integer - 24, i.e., 0x05 = 5, 5 - 24 = -19, and -19 in
    CBOR encoding is equal to 0x32.
 
    The plaintext is the following:
@@ -4478,7 +4480,7 @@ D.2.3.  Message_3
    Note that since ID_CRED_I contains a single 'kid' parameter, i.e.,
    ID_CRED_I = { 4 : kid_I }, only the byte string kid_I is conveyed in
    the plaintext encoded as a bstr_identifier. kid_I is encoded as the
-   corresponding integer - 24, i.e. 0x23 = 35, 35 - 24 = 11, and 11 in
+   corresponding integer - 24, i.e., 0x23 = 35, 35 - 24 = 11, and 11 in
    CBOR encoding is equal to 0x0b.
 
    P_3ae (CBOR Sequence) (10 bytes)

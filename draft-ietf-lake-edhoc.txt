@@ -2,11 +2,12 @@
 
 
 
-Network Working Group                                        G. Selander
-Internet-Draft                                               J. Mattsson
-Intended status: Standards Track                            F. Palombini
-Expires: 30 January 2022                                     Ericsson AB
-                                                            29 July 2021
+Network Working Group                                J.P. Preuß Mattsson
+Internet-Draft                                               J. Fornehed
+Intended status: Standards Track                             G. Selander
+Expires: 4 February 2022                                    F. Palombini
+                                                                Ericsson
+                                                           3 August 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 January 2022.
+   This Internet-Draft will expire on 4 February 2022.
 
 Copyright Notice
 
@@ -4926,19 +4927,33 @@ Acknowledgments
 
 Authors' Addresses
 
-   Göran Selander
-   Ericsson AB
-
-   Email: goran.selander@ericsson.com
-
-
    John Preuß Mattsson
    Ericsson AB
+   SE-164 80 Stockholm
+   Sweden
 
    Email: john.mattsson@ericsson.com
 
 
+   John Fornehed
+   Ericsson AB
+   SE-164 80 Stockholm
+   Sweden
+
+   Email: john.fornehed@ericsson.com
+
+
+   Göran Selander
+   Ericsson AB
+   SE-164 80 Stockholm
+   Sweden
+
+   Email: goran.selander@ericsson.com
+
+
    Francesca Palombini
    Ericsson AB
+   SE-164 80 Stockholm
+   Sweden
 
    Email: francesca.palombini@ericsson.com

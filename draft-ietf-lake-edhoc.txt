@@ -2,11 +2,10 @@
 
 
 
-Network Working Group                                J.P. Preuß Mattsson
-Internet-Draft                                               J. Fornehed
-Intended status: Standards Track                             G. Selander
-Expires: 4 February 2022                                    F. Palombini
-                                                                Ericsson
+Network Working Group                                        G. Selander
+Internet-Draft                                       J.P. Preuß Mattsson
+Intended status: Standards Track                            F. Palombini
+Expires: 4 February 2022                                        Ericsson
                                                            3 August 2021
 
 
@@ -4927,28 +4926,20 @@ Acknowledgments
 
 Authors' Addresses
 
-   John Preuß Mattsson
-   Ericsson AB
-   SE-164 80 Stockholm
-   Sweden
-
-   Email: john.mattsson@ericsson.com
-
-
-   John Fornehed
-   Ericsson AB
-   SE-164 80 Stockholm
-   Sweden
-
-   Email: john.fornehed@ericsson.com
-
-
    Göran Selander
    Ericsson AB
    SE-164 80 Stockholm
    Sweden
 
    Email: goran.selander@ericsson.com
+
+
+   John Preuß Mattsson
+   Ericsson AB
+   SE-164 80 Stockholm
+   Sweden
+
+   Email: john.mattsson@ericsson.com
 
 
    Francesca Palombini

@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-01T01:09:10.126616+00:00",
+  "timestamp": "2021-08-03T01:05:23.739609+00:00",
   "repo": "lake-wg/edhoc",
   "labels": [
     {
@@ -4790,7 +4790,7 @@
       "labels": [],
       "body": "COSE has discussed and are are planning to standardize new encryption algorithms for the AEAD interface after a request from FIDO. The new algorithms would not provide any integrity protection.\r\n\r\nThe current version of the Group OSCORE draft would not be secure at all with these new algorithms due to the unusual design choice to let the sender countersign it's own AEAD. This could easily be addressed by using a traditional MAC-then-Sign approach.\r\n\r\nEDHOC currently uses the inner COSE_Encrypt as a MAC function, this would of course be unsecure if the encryption function is AES-CTR.",
       "createdAt": "2021-05-19T04:44:50Z",
-      "updatedAt": "2021-07-29T19:50:24Z",
+      "updatedAt": "2021-08-02T08:06:42Z",
       "closedAt": null,
       "comments": [
         {
@@ -4876,6 +4876,13 @@
           "body": "Based on Christian comments I would say that the current plan is to merge #136 with the byte string change above for the exporter:\r\n- Exporter context is a byte string (not CBOR)\r\n- EDHOC-KDF context is a CBOR sequence",
           "createdAt": "2021-07-29T19:50:23Z",
           "updatedAt": "2021-07-29T19:50:23Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I suggest merging #136 as is. That seems like the best and most flexible solution",
+          "createdAt": "2021-08-02T08:06:42Z",
+          "updatedAt": "2021-08-02T08:06:42Z"
         }
       ]
     },
@@ -6429,7 +6436,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2021-07-26T11:49:46Z",
-      "updatedAt": "2021-07-29T19:43:45Z",
+      "updatedAt": "2021-08-02T08:02:25Z",
       "baseRepository": "lake-wg/edhoc",
       "baseRefName": "master",
       "baseRefOid": "ed4b5df4a4508c4bf4730179a6dfdc25f67a0178",
@@ -6447,6 +6454,13 @@
           "body": "At first glance, I like this better than #137, as here I don't have to keep the number of elements in EAD_3 around. (I'll have to have processed them at some point, but that doesn't mean I'm keeping the count around).",
           "createdAt": "2021-07-29T19:43:45Z",
           "updatedAt": "2021-07-29T19:43:45Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Based on Christians comment. I would suggest that we merge this. I think allowing a CBOR sequence in the exporter migth also be a good idea. That allows external applications to input a CBOR sequence. The implementation allows a implementation to input tsrt, bsrt. That is just a special case when the CBOR sequence consist of a single bstr.",
+          "createdAt": "2021-08-02T08:02:25Z",
+          "updatedAt": "2021-08-02T08:02:25Z"
         }
       ],
       "reviews": []

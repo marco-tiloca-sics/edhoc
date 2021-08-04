@@ -495,9 +495,9 @@ Table of Contents
 3.3.3.  Use of Connection Identifiers with OSCORE
 
    For OSCORE, the choice of a connection identifier results in the
-   endpoint selecting its Recipient ID, see Section 3.1 of [RFC8613]),
+   endpoint selecting its Recipient ID, see Section 3.1 of [RFC8613],
    for which certain uniqueness requirements apply, see Section 3.3 of
-   [RFC8613]).  Therefore, the Initiator and the Responder MUST NOT
+   [RFC8613].  Therefore, the Initiator and the Responder MUST NOT
    select connection identifiers such that it results in same OSCORE
    Recipient ID.  Since the Recipient ID is a byte string and a EDHOC
    connection identifier is either a CBOR byte string or a CBOR integer,

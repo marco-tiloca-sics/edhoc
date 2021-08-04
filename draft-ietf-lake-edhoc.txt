@@ -191,7 +191,11 @@ Table of Contents
    public keys (RPK) or public key certificates and requires the
    application to provide input on how to verify that endpoints are
    trusted.  This specification focuses on referencing instead of
-   transporting credentials to reduce message overhead.
+   transporting credentials to reduce message overhead.  EDHOC does
+   currently not support pre-shared key (PSK) authentication as
+   authentication with static Diffie-Hellman public keys by reference
+   produces equally small message sizes but with much simpler key
+   distribution.
 
    EDHOC makes use of known protocol constructions, such as SIGMA
    [SIGMA] and Extract-and-Expand [RFC5869].  COSE also provides crypto

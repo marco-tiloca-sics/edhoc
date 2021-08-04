@@ -943,7 +943,7 @@ Table of Contents
    External authorization data is a CBOR sequence (see Appendix C.1) as
    defined below:
 
-   EAD = (
+   ead = (
      type : int,
      1* ext_authz_data : any,
    )
@@ -1256,7 +1256,7 @@ Table of Contents
      SUITES_I : [ selected : suite, supported : 2* suite ] / suite,
      G_X : bstr,
      C_I : bstr / int,
-     ? EAD_1 : EAD,
+     ? EAD_1 : ead,
    )
 
    suite = int
@@ -1742,7 +1742,7 @@ Table of Contents
 
    error = (
      ERR_CODE : int,
-     ERR_INFO : any
+     ERR_INFO : any,
    )
 
                        Figure 5: EDHOC Error Message
@@ -3015,14 +3015,17 @@ C.2.  CDDL Definitions
 
    suite = int
 
-   SUITES_R : [ supported : 2* suite ] / suite
+   ead = (
+     type : int,
+     1* ext_authz_data : any,
+   )
 
    message_1 = (
      METHOD : int,
      SUITES_I : [ selected : suite, supported : 2* suite ] / suite,
      G_X : bstr,
      C_I : bstr / int,
-     ? EAD ; EAD_1
+     ? EAD_1 : ead,
    )
 
    message_2 = (
@@ -3043,16 +3046,18 @@ C.2.  CDDL Definitions
      CIPHERTEXT_4 : bstr,
    )
 
+   SUITES_R : [ supported : 2* suite ] / suite
+
    error = (
      ERR_CODE : int,
-     ERR_INFO : any
+     ERR_INFO : any,
    )
 
    info = [
       edhoc_aead_id : int / tstr,
       transcript_hash : bstr,
       label : tstr,
-      length : uint
+      length : uint,
    ]
 
 C.3.  COSE

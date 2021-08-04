@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                               J. Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 31 January 2022                                     Ericsson AB
-                                                            30 July 2021
+Expires: 5 February 2022                                     Ericsson AB
+                                                           4 August 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 January 2022.
+   This Internet-Draft will expire on 5 February 2022.
 
 Copyright Notice
 
@@ -310,7 +310,7 @@ Table of Contents
    Figure 2.
 
      Initiator                                               Responder
-        |                          G_X                            |
+        |                           G_X                           |
         +-------------------------------------------------------->|
         |                                                         |
         |  G_Y, AEAD( K_2; ID_CRED_R, Sig(R; CRED_R, G_X, G_Y) )  |
@@ -411,15 +411,15 @@ Table of Contents
    therefore be sent in parallel or together with EDHOC message_3.
 
    Initiator                                                   Responder
-   |                   METHOD, SUITES_I, G_X, C_I, EAD_1               |
+   |                 METHOD, SUITES_I, G_X, C_I, EAD_1                 |
    +------------------------------------------------------------------>|
    |                             message_1                             |
    |                                                                   |
-   |          G_Y, C_R, Enc(ID_CRED_R, Signature_or_MAC_2, EAD_2)      |
+   |        G_Y, Enc(ID_CRED_R, Signature_or_MAC_2, EAD_2), C_R        |
    |<------------------------------------------------------------------+
    |                             message_2                             |
    |                                                                   |
-   |           AEAD(K_3ae; ID_CRED_I, Signature_or_MAC_3, EAD_3)       |
+   |         AEAD(K_3ae; ID_CRED_I, Signature_or_MAC_3, EAD_3)         |
    +------------------------------------------------------------------>|
    |                             message_3                             |
 

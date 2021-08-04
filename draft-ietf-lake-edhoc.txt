@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                       J.P. Preuß Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 4 February 2022                                        Ericsson
-                                                           3 August 2021
+Expires: 5 February 2022                                        Ericsson
+                                                           4 August 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -17,11 +17,11 @@ Abstract
    This document specifies Ephemeral Diffie-Hellman Over COSE (EDHOC), a
    very compact and lightweight authenticated Diffie-Hellman key
    exchange with ephemeral keys.  EDHOC provides mutual authentication,
-   perfect forward secrecy, and identity protection.  EDHOC is intended
-   for usage in constrained scenarios and a main use case is to
-   establish an OSCORE security context.  By reusing COSE for
-   cryptography, CBOR for encoding, and CoAP for transport, the
-   additional code size can be kept very low.
+   forward secrecy, and identity protection.  EDHOC is intended for
+   usage in constrained scenarios and a main use case is to establish an
+   OSCORE security context.  By reusing COSE for cryptography, CBOR for
+   encoding, and CoAP for transport, the additional code size can be
+   kept very low.
 
 Discussion Venues
 
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 February 2022.
+   This Internet-Draft will expire on 5 February 2022.
 
 Copyright Notice
 
@@ -186,12 +186,12 @@ Table of Contents
 
    This document specifies Ephemeral Diffie-Hellman Over COSE (EDHOC), a
    lightweight authenticated key exchange protocol providing good
-   security properties including perfect forward secrecy, identity
-   protection, and cipher suite negotiation.  Authentication can be
-   based on raw public keys (RPK) or public key certificates and
-   requires the application to provide input on how to verify that
-   endpoints are trusted.  This specification focuses on referencing
-   instead of transporting credentials to reduce message overhead.
+   security properties including forward secrecy, identity protection,
+   and cipher suite negotiation.  Authentication can be based on raw
+   public keys (RPK) or public key certificates and requires the
+   application to provide input on how to verify that endpoints are
+   trusted.  This specification focuses on referencing instead of
+   transporting credentials to reduce message overhead.
 
    EDHOC makes use of known protocol constructions, such as SIGMA
    [SIGMA] and Extract-and-Expand [RFC5869].  COSE also provides crypto
@@ -1891,9 +1891,9 @@ Table of Contents
 
    EDHOC inherits its security properties from the theoretical SIGMA-I
    protocol [SIGMA].  Using the terminology from [SIGMA], EDHOC provides
-   perfect forward secrecy, mutual authentication with aliveness,
-   consistency, and peer awareness.  As described in [SIGMA], peer
-   awareness is provided to the Responder, but not to the Initiator.
+   forward secrecy, mutual authentication with aliveness, consistency,
+   and peer awareness.  As described in [SIGMA], peer awareness is
+   provided to the Responder, but not to the Initiator.
 
    EDHOC protects the credential identifier of the Initiator against
    active attacks and the credential identifier of the Responder against
@@ -1917,15 +1917,14 @@ Table of Contents
 
    As required by [RFC7258], IETF protocols need to mitigate pervasive
    monitoring when possible.  One way to mitigate pervasive monitoring
-   is to use a key exchange that provides perfect forward secrecy.
-   EDHOC therefore only supports methods with perfect forward secrecy.
-   To limit the effect of breaches, it is important to limit the use of
-   symmetrical group keys for bootstrapping.  EDHOC therefore strives to
-   make the additional cost of using raw public keys and self-signed
-   certificates as small as possible.  Raw public keys and self-signed
-   certificates are not a replacement for a public key infrastructure
-   but SHOULD be used instead of symmetrical group keys for
-   bootstrapping.
+   is to use a key exchange that provides forward secrecy.  EDHOC
+   therefore only supports methods with forward secrecy.  To limit the
+   effect of breaches, it is important to limit the use of symmetrical
+   group keys for bootstrapping.  EDHOC therefore strives to make the
+   additional cost of using raw public keys and self-signed certificates
+   as small as possible.  Raw public keys and self-signed certificates
+   are not a replacement for a public key infrastructure but SHOULD be
+   used instead of symmetrical group keys for bootstrapping.
 
    Compromise of the long-term keys (private signature or static DH
    keys) does not compromise the security of completed EDHOC exchanges.

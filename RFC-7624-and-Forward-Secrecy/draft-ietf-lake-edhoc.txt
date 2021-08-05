@@ -362,8 +362,8 @@ Table of Contents
       in deployments where no protected application data is sent from R
       to I.
 
-   *  A key material exporter and a key update function enabling
-      frequent forward secrecy.
+   *  A key material exporter and a key update function enabling forward
+      secrecy.
 
    *  Verification of a common preferred cipher suite:
 
@@ -1191,7 +1191,9 @@ Table of Contents
 
    The EDHOC-KeyUpdate takes a nonce as input to guarantee that there
    are no short cycles.  The Initiator and the Responder need to agree
-   on the nonce, which can e.g., be a counter or a random number.
+   on the nonce, which can e.g., be a counter or a random number.  While
+   the KeyUpdate method provides forward secrecy it does not give as
+   strong security properties as re-running EDHOC, see Section 7.
 
 5.  Message Formatting and Processing
 

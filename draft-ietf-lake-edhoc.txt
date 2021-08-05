@@ -2488,13 +2488,6 @@ Table of Contents
               <https://www.ietf.org/internet-drafts/draft-ietf-cose-
               x509-08.txt>.
 
-   [I-D.ietf-lake-reqs]
-              Vucinic, M., Selander, G., Mattsson, J. P., and D. Garcia-
-              Carrillo, "Requirements for a Lightweight AKE for OSCORE",
-              Work in Progress, Internet-Draft, draft-ietf-lake-reqs-04,
-              8 June 2020, <https://www.ietf.org/archive/id/draft-ietf-
-              lake-reqs-04.txt>.
-
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -2620,6 +2613,13 @@ Table of Contents
               ietf-cose-cbor-encoded-cert-02, 12 July 2021,
               <https://www.ietf.org/archive/id/draft-ietf-cose-cbor-
               encoded-cert-02.txt>.
+
+   [I-D.ietf-lake-reqs]
+              Vucinic, M., Selander, G., Mattsson, J. P., and D. Garcia-
+              Carrillo, "Requirements for a Lightweight AKE for OSCORE",
+              Work in Progress, Internet-Draft, draft-ietf-lake-reqs-04,
+              8 June 2020, <https://www.ietf.org/archive/id/draft-ietf-
+              lake-reqs-04.txt>.
 
    [I-D.ietf-lwig-security-protocol-comparison]
               Mattsson, J. P., Palombini, F., and M. Vucinic,

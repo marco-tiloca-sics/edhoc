@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-03T01:05:23.739609+00:00",
+  "timestamp": "2021-08-05T01:01:21.511502+00:00",
   "repo": "lake-wg/edhoc",
   "labels": [
     {
@@ -4790,7 +4790,7 @@
       "labels": [],
       "body": "COSE has discussed and are are planning to standardize new encryption algorithms for the AEAD interface after a request from FIDO. The new algorithms would not provide any integrity protection.\r\n\r\nThe current version of the Group OSCORE draft would not be secure at all with these new algorithms due to the unusual design choice to let the sender countersign it's own AEAD. This could easily be addressed by using a traditional MAC-then-Sign approach.\r\n\r\nEDHOC currently uses the inner COSE_Encrypt as a MAC function, this would of course be unsecure if the encryption function is AES-CTR.",
       "createdAt": "2021-05-19T04:44:50Z",
-      "updatedAt": "2021-08-02T08:06:42Z",
+      "updatedAt": "2021-08-03T10:59:20Z",
       "closedAt": null,
       "comments": [
         {
@@ -4883,6 +4883,13 @@
           "body": "I suggest merging #136 as is. That seems like the best and most flexible solution",
           "createdAt": "2021-08-02T08:06:42Z",
           "updatedAt": "2021-08-02T08:06:42Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We could make context a separate parameter without changing anything else in #136\r\n\r\nEDHOC-Exporter(label, context, length)\r\n     = EDHOC-KDF(PRK_4x3m, TH_4, label, context, length) \r\n\r\nCompute MAC_2 = EDHOC-KDF( PRK_3x2m, TH_2, \"MAC_2\", ( ID_CRED_R, CRED_R, ? AD_2 ), mac_length )\r\nMaster Secret = EDHOC-Exporter( \"OSCORE Master Secret\", , key_length )\r\n",
+          "createdAt": "2021-08-03T10:59:20Z",
+          "updatedAt": "2021-08-03T10:59:20Z"
         }
       ]
     },
@@ -5188,6 +5195,70 @@
           "updatedAt": "2021-07-31T00:01:07Z"
         }
       ]
+    },
+    {
+      "number": 144,
+      "id": "MDU6SXNzdWU5NTkwMzM5OTc=",
+      "title": "CDDL section is outdated",
+      "url": "https://github.com/lake-wg/edhoc/issues/144",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-08-03T11:48:37Z",
+      "updatedAt": "2021-08-04T15:25:52Z",
+      "closedAt": "2021-08-04T15:25:52Z",
+      "comments": []
+    },
+    {
+      "number": 145,
+      "id": "MDU6SXNzdWU5NTk5NzA4MDk=",
+      "title": "Describe in a sentence or two why psk is not supported",
+      "url": "https://github.com/lake-wg/edhoc/issues/145",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "We have gotten questions from other SDOs why PSK is not supported. There is an unfortunate myth that PSK is needed for small messages. When told that public keys with static DH gives the same size and much easier key management they agree that this was a good choice.",
+      "createdAt": "2021-08-04T06:55:27Z",
+      "updatedAt": "2021-08-04T07:11:01Z",
+      "closedAt": "2021-08-04T07:11:01Z",
+      "comments": []
+    },
+    {
+      "number": 146,
+      "id": "MDU6SXNzdWU5NTk5NzE2NzI=",
+      "title": "Describe the nonce use in KeyUpdate with a few words",
+      "url": "https://github.com/lake-wg/edhoc/issues/146",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-08-04T06:56:28Z",
+      "updatedAt": "2021-08-04T06:56:28Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 147,
+      "id": "MDU6SXNzdWU5NjA1ODU4NDg=",
+      "title": "CRED_R may not be a bstr",
+      "url": "https://github.com/lake-wg/edhoc/issues/147",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "CRED_R - bstr containing the credential\r\n\r\nThis is not true for C509 which is an CBOR array",
+      "createdAt": "2021-08-04T14:58:00Z",
+      "updatedAt": "2021-08-04T14:58:00Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -5571,7 +5642,7 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NjE4OTg2NDc1",
       "title": "bstr / int",
       "url": "https://github.com/lake-wg/edhoc/pull/98",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
@@ -5580,18 +5651,26 @@
       ],
       "body": "",
       "createdAt": "2021-04-20T04:53:48Z",
-      "updatedAt": "2021-06-17T13:24:48Z",
+      "updatedAt": "2021-08-03T11:43:20Z",
       "baseRepository": "lake-wg/edhoc",
       "baseRefName": "master",
       "baseRefOid": "5e9c943432fe3ab08d9649aaa6ac6f84f09af4f0",
       "headRepository": "lake-wg/edhoc",
       "headRefName": "bstr-/-int",
       "headRefOid": "a2152518780987fa53f8c9b66f647444532741c7",
-      "closedAt": null,
+      "closedAt": "2021-08-03T11:43:20Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing this. My understanding is that the suggested content in this PR is already merged in -08 based on another PR.",
+          "createdAt": "2021-08-03T11:43:20Z",
+          "updatedAt": "2021-08-03T11:43:20Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -5962,7 +6041,7 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NjQ2MDc0NjE3",
       "title": "Move the prepended C_x from the messages to CoAP section",
       "url": "https://github.com/lake-wg/edhoc/pull/117",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chrysn",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -5971,14 +6050,14 @@
       ],
       "body": "... and add an appendix telling other protocol binding authors to do as\r\nCoAP does.\r\n\r\nThis is an initial rough change, primarily guided by search for a few\r\nkeywords, so some spots that need changed wording may have been missed.\r\n\r\nThe test vectors were left unmodified. Some data structurs were modified\r\nminimally to be now empty; removing them completely can only be done\r\ninformed my their relevance to the transcripts.",
       "createdAt": "2021-05-17T18:21:30Z",
-      "updatedAt": "2021-06-24T14:49:36Z",
+      "updatedAt": "2021-08-03T11:44:39Z",
       "baseRepository": "lake-wg/edhoc",
       "baseRefName": "master",
       "baseRefOid": "ba134c697b853d1780a30bd0dd27bc31d2b58a2e",
       "headRepository": "chrysn-pull-requests/edhoc",
       "headRefName": "initial-105",
       "headRefOid": "5390c73cd1002a8d83ff285da49558f39587f508",
-      "closedAt": null,
+      "closedAt": "2021-08-03T11:44:39Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -6024,6 +6103,13 @@
           "body": "I am not arguing that this is impossible to implement, I am arguing that it is not the cleanest design. See my comment on #129  on how I think we could cleanly describe the separation of concerns.",
           "createdAt": "2021-06-24T14:49:36Z",
           "updatedAt": "2021-06-24T14:49:36Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing this. My understanding is that the suggested content in this PR is already merged in -08 based on another PR.",
+          "createdAt": "2021-08-03T11:44:39Z",
+          "updatedAt": "2021-08-03T11:44:39Z"
         }
       ],
       "reviews": []
@@ -6061,7 +6147,7 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NjQ3NjcwMzcz",
       "title": "Drop bstr_identifier, allow bstr / int in C_x instead",
       "url": "https://github.com/lake-wg/edhoc/pull/122",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chrysn",
       "authorAssociation": "NONE",
       "assignees": [],
@@ -6070,14 +6156,14 @@
       ],
       "body": "The largest fall-out of this will be in draft-ietf-core-oscore-edhoc\r\nsince https://github.com/lake-wg/edhoc/issues/75.\r\n\r\nClose: #79\r\n\r\n---\r\n\r\nAs with #117, the test vectors are untouched. (I don't expect actual change in the numbers, just in the text).\r\n\r\nThis is incomplete on its own due to the #75 changes; I'm opening a separate PR there.\r\n\r\nAnother piece of incompleteness is that this references (with a remark) the kid-int variant suggested in #79, without actually defining it. (But that would be merely an IANA item; the big question to COSE being whether we can up-spec kid to bstr / int in-place or really need kid-int).",
       "createdAt": "2021-05-19T13:31:08Z",
-      "updatedAt": "2021-06-17T13:25:06Z",
+      "updatedAt": "2021-08-03T11:44:48Z",
       "baseRepository": "lake-wg/edhoc",
       "baseRefName": "master",
       "baseRefOid": "ba134c697b853d1780a30bd0dd27bc31d2b58a2e",
       "headRepository": "chrysn-pull-requests/edhoc",
       "headRefName": "initial-79",
       "headRefOid": "cdc99c5a2fe09ca52dba2fcfcbf6da0388c0cbeb",
-      "closedAt": null,
+      "closedAt": "2021-08-03T11:44:48Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -6088,6 +6174,13 @@
           "body": "See also #98",
           "createdAt": "2021-05-21T07:49:14Z",
           "updatedAt": "2021-05-21T07:49:14Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing this. My understanding is that the suggested content in this PR is already merged in -08 based on another PR.",
+          "createdAt": "2021-08-03T11:44:48Z",
+          "updatedAt": "2021-08-03T11:44:48Z"
         }
       ],
       "reviews": []
@@ -6436,13 +6529,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2021-07-26T11:49:46Z",
-      "updatedAt": "2021-08-02T08:02:25Z",
+      "updatedAt": "2021-08-04T15:27:42Z",
       "baseRepository": "lake-wg/edhoc",
       "baseRefName": "master",
       "baseRefOid": "ed4b5df4a4508c4bf4730179a6dfdc25f67a0178",
       "headRepository": "lake-wg/edhoc",
       "headRefName": "Simpler-more-secure-MAC-calculation-(CBOR-sequence)",
-      "headRefOid": "92a0e4a916b1835af34eb81bbec1ecfda76dded9",
+      "headRefOid": "361049c046230d1795e08028392624ebaf6ace3e",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -6463,28 +6556,109 @@
           "updatedAt": "2021-08-02T08:02:25Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzIxMDQxNjg5",
+          "commit": {
+            "abbreviatedOid": "92a0e4a"
+          },
+          "author": "marco-tiloca-sics",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-03T10:34:51Z",
+          "updatedAt": "2021-08-03T10:34:51Z",
+          "comments": [
+            {
+              "originalPosition": 102,
+              "body": "Here the PRK should be PRK_3e2m.",
+              "createdAt": "2021-08-03T10:34:51Z",
+              "updatedAt": "2021-08-03T10:34:51Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzIxMDQzMTA4",
+          "commit": {
+            "abbreviatedOid": "92a0e4a"
+          },
+          "author": "marco-tiloca-sics",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-03T10:36:38Z",
+          "updatedAt": "2021-08-03T10:36:38Z",
+          "comments": [
+            {
+              "originalPosition": 135,
+              "body": "It should be:\r\n\r\nIf the Initiator authenticates with a static Diffie-Hellman key (method equals 2 or 3) ... If the Initiator authenticates with a signature key (method equals 0 or 1)",
+              "createdAt": "2021-08-03T10:36:38Z",
+              "updatedAt": "2021-08-03T10:36:38Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzIxMDY5OTUy",
+          "commit": {
+            "abbreviatedOid": "bfa4b3f"
+          },
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-03T11:10:45Z",
+          "updatedAt": "2021-08-03T11:10:45Z",
+          "comments": [
+            {
+              "originalPosition": 102,
+              "body": "fixed",
+              "createdAt": "2021-08-03T11:10:45Z",
+              "updatedAt": "2021-08-03T11:10:45Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzIxMDc1NzMx",
+          "commit": {
+            "abbreviatedOid": "0866431"
+          },
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-08-03T11:18:12Z",
+          "updatedAt": "2021-08-03T11:18:13Z",
+          "comments": [
+            {
+              "originalPosition": 135,
+              "body": "Fixed",
+              "createdAt": "2021-08-03T11:18:13Z",
+              "updatedAt": "2021-08-03T11:18:13Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 137,
       "id": "MDExOlB1bGxSZXF1ZXN0Njk2OTcxNTE1",
       "title": "Simpler more secure MAC calculation (CBOR array)",
       "url": "https://github.com/lake-wg/edhoc/pull/137",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2021-07-26T12:11:04Z",
-      "updatedAt": "2021-07-26T22:21:05Z",
+      "updatedAt": "2021-08-03T11:40:19Z",
       "baseRepository": "lake-wg/edhoc",
       "baseRefName": "Simpler-more-secure-MAC-calculation-(CBOR-sequence)",
       "baseRefOid": "b681e6206bf9b76db521870eac4a9ee2055abf3c",
       "headRepository": "lake-wg/edhoc",
       "headRefName": "Simpler-more-secure-MAC-calculation-(CBOR-array)",
       "headRefOid": "0a218a287077f8264afd563517af24fa92e64722",
-      "closedAt": null,
+      "closedAt": "2021-08-03T11:40:18Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -6495,6 +6669,13 @@
           "body": "This is now a change bases on #136. The reader need to first look at #136 to understand the suggested changes to the main branch.\r\n\r\nThe diff gives a good overview of the difference between a sequence solution and a array solution.\r\n\r\nIf approved. #137 needs to be merged before #136. ",
           "createdAt": "2021-07-26T22:21:05Z",
           "updatedAt": "2021-07-26T22:21:05Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closing this, the plan is to merge #136",
+          "createdAt": "2021-08-03T11:40:18Z",
+          "updatedAt": "2021-08-03T11:40:18Z"
         }
       ],
       "reviews": []
@@ -6511,13 +6692,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2021-07-30T10:31:48Z",
-      "updatedAt": "2021-07-30T23:24:16Z",
+      "updatedAt": "2021-08-04T15:20:20Z",
       "baseRepository": "lake-wg/edhoc",
       "baseRefName": "master",
       "baseRefOid": "dd1f4e9c78771c5b3a5ee0eba7e292c79d5c074a",
       "headRepository": "lake-wg/edhoc",
       "headRefName": "Optimization-of-message_2-to-45-bytes",
-      "headRefOid": "fc258f959ecdf19df9282b5a6a8ac04d4c1225f9",
+      "headRefOid": "1bef26305ec0f22582eb55363d17391b2d351c6c",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -6553,6 +6734,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 148,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzAzNjEzNTUz",
+      "title": "CRED_x is not bstr",
+      "url": "https://github.com/lake-wg/edhoc/pull/148",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "#147 ",
+      "createdAt": "2021-08-04T15:12:21Z",
+      "updatedAt": "2021-08-04T15:12:21Z",
+      "baseRepository": "lake-wg/edhoc",
+      "baseRefName": "master",
+      "baseRefOid": "972f839a39c59d348cff794a8bdc54082e9739a8",
+      "headRepository": "lake-wg/edhoc",
+      "headRefName": "CRED_x-is-not-bstr-(e.g.-C509)",
+      "headRefOid": "10a2f24bbedbb491fee51de50579330ab8519bdf",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }

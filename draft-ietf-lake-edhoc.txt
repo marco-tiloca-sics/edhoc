@@ -362,8 +362,8 @@ Table of Contents
       in deployments where no protected application data is sent from R
       to I.
 
-   *  A key material exporter and a key update function enabling
-      frequent forward secrecy.
+   *  A key material exporter and a key update function enabling forward
+      secrecy.
 
    *  Verification of a common preferred cipher suite:
 
@@ -1191,7 +1191,9 @@ Table of Contents
 
    The EDHOC-KeyUpdate takes a nonce as input to guarantee that there
    are no short cycles.  The Initiator and the Responder need to agree
-   on the nonce, which can e.g., be a counter or a random number.
+   on the nonce, which can e.g., be a counter or a random number.  While
+   the KeyUpdate method provides forward secrecy it does not give as
+   strong security properties as re-running EDHOC, see Section 7.
 
 5.  Message Formatting and Processing
 
@@ -1924,15 +1926,35 @@ Table of Contents
    the Initiator and the Responder.
 
    As required by [RFC7258], IETF protocols need to mitigate pervasive
-   monitoring when possible.  One way to mitigate pervasive monitoring
-   is to use a key exchange that provides forward secrecy.  EDHOC
-   therefore only supports methods with forward secrecy.  To limit the
-   effect of breaches, it is important to limit the use of symmetrical
-   group keys for bootstrapping.  EDHOC therefore strives to make the
-   additional cost of using raw public keys and self-signed certificates
-   as small as possible.  Raw public keys and self-signed certificates
-   are not a replacement for a public key infrastructure but SHOULD be
-   used instead of symmetrical group keys for bootstrapping.
+   monitoring when possible.  EDHOC therefore only supports methods with
+   ephemeral Diffie-Hellman and provides a KeyUpdate function for
+   lightweight application protocol rekeying with forward secrecy.  As
+   discussed in [RFC4949] the term "forward secrecy" is a muddled area.
+   EDHOC provides forward secrecy in the sense that compromise of the
+   private authentication keys does not compromise past session keys,
+   and compromise of a session key does not compromise past session
+   keys.
+
+   While the KeyUpdate method can be used to meet cryptographic limits
+   and provide partial protection against key leakage, it provides
+   significantly weaker security properties than re-running EDHOC with
+   ephemeral Diffie-Hellman.  Even with frequent use of KeyUpdate,
+   compromise of one session key compromises all future session keys,
+   and an attacker therefore only needs to perform static key
+   exfiltration [RFC7624].  Frequently re-running EDHOC with ephemeral
+   Diffie-Hellman forces attackers to perform dynamic key exfiltration
+   instead of static key exfiltration [RFC7624].  In the dynamic case,
+   the attacker must have continuous interactions with the collaborator,
+   which is more complicated and has a higher risk profile than the
+   static case.
+
+   To limit the effect of breaches, it is important to limit the use of
+   symmetrical group keys for bootstrapping.  EDHOC therefore strives to
+   make the additional cost of using raw public keys and self-signed
+   certificates as small as possible.  Raw public keys and self-signed
+   certificates are not a replacement for a public key infrastructure
+   but SHOULD be used instead of symmetrical group keys for
+   bootstrapping.
 
    Compromise of the long-term keys (private signature or static DH
    keys) does not compromise the security of completed EDHOC exchanges.
@@ -2021,14 +2043,6 @@ Table of Contents
    difference is negligible, IND-CCA does not increase security, and
    integrity is provided by the inner MAC (and signature depending on
    method).
-
-   The data rates in many IoT deployments are very limited.  Given that
-   the application keys are protected as well as the long-term
-   authentication keys they can often be used for years or even decades
-   before the cryptographic limits are reached.  If the application keys
-   established through EDHOC need to be renewed, the communicating
-   parties can derive application keys with other labels or run EDHOC
-   again.
 
    Requirement for how to securely generate, validate, and process the
    ephemeral public keys depend on the elliptic curve.  For X25519 and
@@ -2523,6 +2537,13 @@ Table of Contents
               DOI 10.17487/RFC7252, June 2014,
               <https://www.rfc-editor.org/info/rfc7252>.
 
+   [RFC7624]  Barnes, R., Schneier, B., Jennings, C., Hardie, T.,
+              Trammell, B., Huitema, C., and D. Borkmann,
+              "Confidentiality in the Face of Pervasive Surveillance: A
+              Threat Model and Problem Statement", RFC 7624,
+              DOI 10.17487/RFC7624, August 2015,
+              <https://www.rfc-editor.org/info/rfc7624>.
+
    [RFC7748]  Langley, A., Hamburg, M., and S. Turner, "Elliptic Curves
               for Security", RFC 7748, DOI 10.17487/RFC7748, January
               2016, <https://www.rfc-editor.org/info/rfc7748>.
@@ -2664,6 +2685,10 @@ Table of Contents
               Analysis of EDHOC Key Establishment for Constrained IoT
               Devices", September 2020,
               <https://arxiv.org/abs/2007.11427>.
+
+   [RFC4949]  Shirey, R., "Internet Security Glossary, Version 2",
+              FYI 36, RFC 4949, DOI 10.17487/RFC4949, August 2007,
+              <https://www.rfc-editor.org/info/rfc4949>.
 
    [RFC7228]  Bormann, C., Ersue, M., and A. Keranen, "Terminology for
               Constrained-Node Networks", RFC 7228,

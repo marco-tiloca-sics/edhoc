@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                       J.P. Preuß Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 5 February 2022                                        Ericsson
-                                                           4 August 2021
+Expires: 6 February 2022                                        Ericsson
+                                                           5 August 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 February 2022.
+   This Internet-Draft will expire on 6 February 2022.
 
 Copyright Notice
 
@@ -83,7 +83,7 @@ Table of Contents
      3.5.  Authentication Parameters
      3.6.  Cipher Suites
      3.7.  Ephemeral Public Keys
-     3.8.  External Authorization Data
+     3.8.  External Authorization Data (EAD)
      3.9.  Applicability Statement
    4.  Key Derivation
      4.1.  EDHOC-Exporter Interface
@@ -923,7 +923,7 @@ Table of Contents
    be used.  COSE always use compact output for Elliptic Curve Keys of
    type EC2.
 
-3.8.  External Authorization Data
+3.8.  External Authorization Data (EAD)
 
    In order to reduce round trips and number of messages or to simplify
    processing, external security applications may be integrated into

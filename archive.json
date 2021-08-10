@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-08T01:01:25.728481+00:00",
+  "timestamp": "2021-08-10T01:03:19.747733+00:00",
   "repo": "lake-wg/edhoc",
   "labels": [
     {
@@ -5279,9 +5279,17 @@
       "labels": [],
       "body": "```\r\nead = (\r\n  type : int,\r\n  1* ext_authz_data : any,\r\n)\r\n```\r\n\r\nWhat is type? Is that the the external security application or the content, i.e., the sequence of ext_authz_data?\r\n\r\nIf type is the external security application, is the same type supposed to be used in message_1, 2, 3, and 4?\r\n\r\nIf type referes to the ext_authz_data, would it be better with:\r\n\r\n`\r\nead = + ( type : int, ext_authz_data : any )\r\n`",
       "createdAt": "2021-08-05T07:08:40Z",
-      "updatedAt": "2021-08-05T07:08:40Z",
+      "updatedAt": "2021-08-09T20:02:47Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "gselander",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The intent with type is to identify the ext_authz_data object to allow an external security application to define processing with respect to well defined input and output. While defining type per message and per external security application would work, it would not enable reuse of already defined data structures; e.g. would not allow the use of a certain constrained voucher type in more than one message or external security application. \r\n\r\nA modular approach, as in ead = + ... above, does makes sense. For example, depending on if certificate enrollment is performed, a token may be passed with or without a csr in the same ead of one message. The former case can be realized with multiple types of ext_authz_data in one message.",
+          "createdAt": "2021-08-09T20:02:47Z",
+          "updatedAt": "2021-08-09T20:02:47Z"
+        }
+      ]
     }
   ],
   "pulls": [

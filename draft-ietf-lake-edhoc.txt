@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                       J.P. Preuß Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 6 February 2022                                        Ericsson
-                                                           5 August 2021
+Expires: 12 February 2022                                       Ericsson
+                                                          11 August 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 February 2022.
+   This Internet-Draft will expire on 12 February 2022.
 
 Copyright Notice
 
@@ -249,10 +249,10 @@ Table of Contents
                                          kid       x5t
                      ---------------------------------
                      message_1            37        37
-                     message_2            46       117
+                     message_2            45       116
                      message_3            19        90
                      ---------------------------------
-                     Total               102       244
+                     Total               101       243
                      =================================
 
                 Figure 1: Example of message sizes in bytes.
@@ -315,7 +315,7 @@ Table of Contents
    Figure 2.
 
      Initiator                                               Responder
-        |                          G_X                            |
+        |                           G_X                           |
         +-------------------------------------------------------->|
         |                                                         |
         |  G_Y, AEAD( K_2; ID_CRED_R, Sig(R; CRED_R, G_X, G_Y) )  |
@@ -416,15 +416,15 @@ Table of Contents
    therefore be sent in parallel or together with EDHOC message_3.
 
    Initiator                                                   Responder
-   |                   METHOD, SUITES_I, G_X, C_I, EAD_1               |
+   |                 METHOD, SUITES_I, G_X, C_I, EAD_1                 |
    +------------------------------------------------------------------>|
    |                             message_1                             |
    |                                                                   |
-   |          G_Y, C_R, Enc(ID_CRED_R, Signature_or_MAC_2, EAD_2)      |
+   |        G_Y, Enc(ID_CRED_R, Signature_or_MAC_2, EAD_2), C_R        |
    |<------------------------------------------------------------------+
    |                             message_2                             |
    |                                                                   |
-   |           AEAD(K_3ae; ID_CRED_I, Signature_or_MAC_3, EAD_3)       |
+   |         AEAD(K_3ae; ID_CRED_I, Signature_or_MAC_3, EAD_3)         |
    +------------------------------------------------------------------>|
    |                             message_3                             |
 
@@ -1339,22 +1339,18 @@ Table of Contents
 
 5.3.1.  Formatting of Message 2
 
-   message_2 and data_2 SHALL be CBOR Sequences (see Appendix C.1) as
-   defined below
+   message_2 SHALL be a CBOR Sequence (see Appendix C.1) as defined
+   below
 
    message_2 = (
-     data_2,
-     CIPHERTEXT_2 : bstr,
-   )
-
-   data_2 = (
-     G_Y : bstr,
+     G_Y_CIPHERTEXT_2 : bstr,
      C_R : bstr / int,
    )
 
    where:
 
-   *  G_Y - the ephemeral public key of the Responder
+   *  G_Y_CIPHERTEXT_2 - the concatenation of G_Y, the ephemeral public
+      key of the Responder, and CIPHERTEXT_2
 
    *  C_R - variable length connection identifier
 
@@ -1369,8 +1365,8 @@ Table of Contents
    *  Choose a connection identifier C_R and store it for the length of
       the protocol.
 
-   *  Compute the transcript hash TH_2 = H( H(message_1), data_2 ) where
-      H() is the hash function in the selected cipher suite.  The
+   *  Compute the transcript hash TH_2 = H( H(message_1), G_Y, C_R )
+      where H() is the hash function in the selected cipher suite.  The
       transcript hash TH_2 is a CBOR encoded bstr and the input to the
       hash function is a CBOR Sequence.  Note that H(message_1) can be
       computed and cached already in the processing of message_1.
@@ -3058,12 +3054,7 @@ C.2.  CDDL Definitions
    )
 
    message_2 = (
-     data_2,
-     CIPHERTEXT_2 : bstr,
-   )
-
-   data_2 = (
-     G_Y : bstr,
+     G_Y_CIPHERTEXT_2 : bstr,
      C_R : bstr / int,
    )
 

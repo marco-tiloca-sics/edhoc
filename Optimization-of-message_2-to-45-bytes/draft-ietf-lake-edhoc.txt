@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                               J. Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 5 February 2022                                     Ericsson AB
-                                                           4 August 2021
+Expires: 12 February 2022                                    Ericsson AB
+                                                          11 August 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 February 2022.
+   This Internet-Draft will expire on 12 February 2022.
 
 Copyright Notice
 
@@ -3013,7 +3013,7 @@ C.2.  CDDL Definitions
      SUITES_I : [ selected : suite, supported : 2* suite ] / suite,
      G_X : bstr,
      C_I : bstr / int,
-     ? EAD_1 ; EAD_1
+     ? EAD ; EAD_1
    )
 
    message_2 = (

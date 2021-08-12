@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-10T01:03:19.747733+00:00",
+  "timestamp": "2021-08-12T00:59:43.655870+00:00",
   "repo": "lake-wg/edhoc",
   "labels": [
     {
@@ -5147,9 +5147,17 @@
       "labels": [],
       "body": "Quoting main branch:\r\n\r\n> The EAD fields [...] special considerations need to be made such that a) it does not violate security, privacy etc. requirements of the service which uses this data, and b) it does not violate the security properties of EDHOC.\r\n\r\nI see how an application developer would take a into account, but I think that for b, it'd help to give concrete pointers on what not to do. (Right now, other than \"putting anything in there that's picked out of the EDHOC engine\", I don't have any clue as to what could endanger EDHOC here).",
       "createdAt": "2021-07-29T19:31:44Z",
-      "updatedAt": "2021-07-29T19:31:44Z",
+      "updatedAt": "2021-08-10T07:21:39Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "gselander",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This needs to be rephrased. The security/privacy requirements of the security application using EAD may be other than EDHOC. The text should make clear that: \r\n1. the content of EAD may impact the security properties provided by EDHOC\r\n2. the security properties of EDHOC carrying specific EAD types need to be matched against the requirements of the security application",
+          "createdAt": "2021-08-10T07:21:39Z",
+          "updatedAt": "2021-08-10T07:21:39Z"
+        }
+      ]
     },
     {
       "number": 142,
@@ -6553,24 +6561,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0Njk2OTU1OTQ5",
       "title": "Simpler more secure MAC calculation (CBOR sequence)",
       "url": "https://github.com/lake-wg/edhoc/pull/136",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "emanjon",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2021-07-26T11:49:46Z",
-      "updatedAt": "2021-08-05T11:58:14Z",
+      "updatedAt": "2021-08-11T12:26:21Z",
       "baseRepository": "lake-wg/edhoc",
       "baseRefName": "master",
-      "baseRefOid": "ed4b5df4a4508c4bf4730179a6dfdc25f67a0178",
+      "baseRefOid": "4ea461c5f637e3c1c4ae4a0cab032df1258df6f3",
       "headRepository": "lake-wg/edhoc",
       "headRefName": "Simpler-more-secure-MAC-calculation-(CBOR-sequence)",
-      "headRefOid": "c08f9ffc0972fffe97591b51229fa8c256c1a3e1",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "0180955e3ec3f2695913d64504365ec13707c3cf",
+      "closedAt": "2021-08-11T12:26:21Z",
+      "mergedAt": "2021-08-11T12:26:21Z",
+      "mergedBy": "gselander",
+      "mergeCommit": {
+        "oid": "70045ab12c2ed62c9a33e9a61941bcf52f0b34a6"
+      },
       "comments": [
         {
           "author": "chrysn",
@@ -6667,6 +6677,19 @@
               "updatedAt": "2021-08-03T11:18:13Z"
             }
           ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI2NDQ3OTc0",
+          "commit": {
+            "abbreviatedOid": "df11f8d"
+          },
+          "author": "gselander",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-08-10T13:37:42Z",
+          "updatedAt": "2021-08-10T13:37:42Z",
+          "comments": []
         }
       ]
     },
@@ -6716,24 +6739,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NzAwMTg3MDg5",
       "title": "Optimization of message_2 to 45 bytes",
       "url": "https://github.com/lake-wg/edhoc/pull/143",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "emanjon",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2021-07-30T10:31:48Z",
-      "updatedAt": "2021-08-04T15:20:20Z",
+      "updatedAt": "2021-08-11T12:18:50Z",
       "baseRepository": "lake-wg/edhoc",
       "baseRefName": "master",
       "baseRefOid": "dd1f4e9c78771c5b3a5ee0eba7e292c79d5c074a",
       "headRepository": "lake-wg/edhoc",
       "headRefName": "Optimization-of-message_2-to-45-bytes",
-      "headRefOid": "1bef26305ec0f22582eb55363d17391b2d351c6c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "1a2d0387961094e91f198781f6b0cb577509665b",
+      "closedAt": "2021-08-11T12:18:50Z",
+      "mergedAt": "2021-08-11T12:18:50Z",
+      "mergedBy": "gselander",
+      "mergeCommit": {
+        "oid": "adc594b495659384b26012ddddea5ffb40b865e1"
+      },
       "comments": [
         {
           "author": "emanjon",
@@ -6748,6 +6773,20 @@
           "body": "I suggest to have C_R as the last element of the CBOR sequence (which shouldn't be a problem and still allows for a sequential sequence parsing), i.e.:\r\n\r\n```\r\n~~~~~~~~~~~ CDDL\r\ndata_2 = (\r\n  G_Y_CIPHERTEXT_2 : bstr,\r\n  C_R : bstr / int\r\n)\r\n~~~~~~~~~~~\r\n```\r\n\r\nWhen using CoAP (or other transports with the same correlation properties), this would preserve a current good pattern as useful for message recognition: if a response transporting an EDHOC message starts with a CBOR integer, then it's an EDHOC error message.\r\n\r\nIt would be good to preserve this, hence why keeping C_R at the end of the new message_2, since it can now be either a CBOR byte string or a CBOR integer.",
           "createdAt": "2021-07-30T13:06:43Z",
           "updatedAt": "2021-07-30T13:06:43Z"
+        },
+        {
+          "author": "gselander",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Merging this now as there was no objection to:\r\nhttps://mailarchive.ietf.org/arch/msg/lake/wFREGTMBkR5LEcw3JAksJ782eCk/\r\n\r\nThis provides a solution to the concrete issue raised in #103.",
+          "createdAt": "2021-08-11T12:16:50Z",
+          "updatedAt": "2021-08-11T12:16:50Z"
+        },
+        {
+          "author": "gselander",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Mistake, I intended to merge, not close.",
+          "createdAt": "2021-08-11T12:18:23Z",
+          "updatedAt": "2021-08-11T12:18:23Z"
         }
       ],
       "reviews": [

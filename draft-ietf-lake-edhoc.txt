@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                       J.P. Preuß Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 13 February 2022                                       Ericsson
-                                                          12 August 2021
+Expires: 14 February 2022                                       Ericsson
+                                                          13 August 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 February 2022.
+   This Internet-Draft will expire on 14 February 2022.
 
 Copyright Notice
 
@@ -928,11 +928,11 @@ Table of Contents
 
    In order to reduce round trips and number of messages or to simplify
    processing, external security applications may be integrated into
-   EDHOC by transporting authorization related data together with the
-   messages.  One example is the transport third-party identity and
-   authorization information protected out of scope of EDHOC
-   [I-D.selander-ace-ake-authz].  Another example is the embedding of a
-   certificate enrolment request or a newly issued certificate.
+   EDHOC by transporting authorization related data in the messages.
+   One example is third-party identity and authorization information
+   protected out of scope of EDHOC [I-D.selander-ace-ake-authz].
+   Another example is a certificate enrolment request or the resulting
+   issued certificate.
 
    EDHOC allows opaque external authorization data (EAD) to be sent in
    the EDHOC messages.  External authorization data sent in message_1
@@ -941,24 +941,26 @@ Table of Contents
    (EAD_3) or message_4 (EAD_4) is protected between Initiator and
    Responder.
 
-   External authorization data is a CBOR sequence (see Appendix C.1) as
-   defined below:
+   External authorization data is a CBOR sequence (see Appendix C.1)
+   consisting of one or more (type, ext_authz_data) pairs as defined
+   below:
 
-   ead = (
+   ead = 1* (
      type : int,
-     1* ext_authz_data : any,
+     ext_authz_data : any,
    )
 
-   where type is an int and is followed by one or more ext_authz_data
-   depending on type as defined in a separate specification.
+   where ext_authz_data is authorization related data defined in a
+   separate specification and its type is an int.  Different types of
+   ext_authz_data are registered in Section 8.11.
 
    The EAD fields of EDHOC are not intended for generic application
    data.  Since data carried in EAD_1 and EAD_2 fields may not be
-   protected, special considerations need to be made such that a) it
-   does not violate security, privacy etc. requirements of the service
-   which uses this data, and b) it does not violate the security
-   properties of EDHOC.  Security applications making use of the EAD
-   fields must perform the necessary security analysis.
+   protected, special considerations need to be made such that it does
+   not violate security and privacy requirements of the service which
+   uses this data.  Moreover, the content in an EAD field may impact the
+   security properties provided by EDHOC.  Security applications making
+   use of the EAD fields must perform the necessary security analysis.
 
 3.9.  Applicability Statement
 
@@ -3008,9 +3010,9 @@ C.2.  CDDL Definitions
 
    suite = int
 
-   ead = (
+   ead = 1* (
      type : int,
-     1* ext_authz_data : any,
+     ext_authz_data : any,
    )
 
    message_1 = (

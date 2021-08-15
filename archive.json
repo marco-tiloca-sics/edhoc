@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-12T00:59:43.655870+00:00",
+  "timestamp": "2021-08-15T01:00:08.961567+00:00",
   "repo": "lake-wg/edhoc",
   "labels": [
     {
@@ -2474,7 +2474,7 @@
       "labels": [],
       "body": "Thinking of CoAP for transport:\r\n\r\n1. Let's say that the Initiator (Responder) trasmits Message_1 (Message_2) as a Confirmable message, does not receive an ACK from the other peer and retransmits the message. This happens again multiple times, until the maximum number of retransmissions is reached. Should the sender peer simply discontinue the protocol?\r\n\r\n2. Let's say that the same as above happens with the Initiator (Responder) transmitting Message_3 (Message_4). Should the sender peer delete PRK_4x3m, TH_4 and any possible application keys derived with the exporter, including the possible OSCORE Security Context?",
       "createdAt": "2021-01-28T15:47:09Z",
-      "updatedAt": "2021-07-16T13:52:36Z",
+      "updatedAt": "2021-08-13T09:44:04Z",
       "closedAt": null,
       "comments": [
         {
@@ -2511,6 +2511,13 @@
           "body": "Reading this with fresh eyes, now I think that my points are basically covered in Section 5.1 \"Message Processing Outline\", already before version -08, where:\r\n\r\n* > The protocol state is assumed to be associated to an applicability statement ... which provides the context for how messages are transported ...\r\n\r\n  explicitly involves the used transport, whatever it is and whatever the way it works.\r\n\r\n* > If the processing fails, then the protocol is discontinued, an error message sent, and the protocol state erased.\r\n\r\n  does mention the cleanup I had in mind.\r\n\r\n\r\nSo a \"processing failure\" can also be the result of a \"transport failure\", e.g., not receiving an expected next message by a certain timeout or exceeding the maximum number of admitted retransmissions.\r\n\r\nThe only possible clarification can be making this point explicit here, otherwise it seems to be already fine as is.",
           "createdAt": "2021-07-16T13:52:36Z",
           "updatedAt": "2021-07-16T13:52:36Z"
+        },
+        {
+          "author": "gselander",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The text in Section 5.1 \"Message Processing Outline\" is quite general. I added \"for some reason\" to \"If the processing fails\" without going into the specific detail of that it may be lack of confirmation on transport layer.\r\n\r\n\r\n\r\n",
+          "createdAt": "2021-08-13T09:44:04Z",
+          "updatedAt": "2021-08-13T09:44:04Z"
         }
       ]
     },
@@ -5287,7 +5294,7 @@
       "labels": [],
       "body": "```\r\nead = (\r\n  type : int,\r\n  1* ext_authz_data : any,\r\n)\r\n```\r\n\r\nWhat is type? Is that the the external security application or the content, i.e., the sequence of ext_authz_data?\r\n\r\nIf type is the external security application, is the same type supposed to be used in message_1, 2, 3, and 4?\r\n\r\nIf type referes to the ext_authz_data, would it be better with:\r\n\r\n`\r\nead = + ( type : int, ext_authz_data : any )\r\n`",
       "createdAt": "2021-08-05T07:08:40Z",
-      "updatedAt": "2021-08-09T20:02:47Z",
+      "updatedAt": "2021-08-12T13:26:09Z",
       "closedAt": null,
       "comments": [
         {
@@ -5296,6 +5303,13 @@
           "body": "The intent with type is to identify the ext_authz_data object to allow an external security application to define processing with respect to well defined input and output. While defining type per message and per external security application would work, it would not enable reuse of already defined data structures; e.g. would not allow the use of a certain constrained voucher type in more than one message or external security application. \r\n\r\nA modular approach, as in ead = + ... above, does makes sense. For example, depending on if certificate enrollment is performed, a token may be passed with or without a csr in the same ead of one message. The former case can be realized with multiple types of ext_authz_data in one message.",
           "createdAt": "2021-08-09T20:02:47Z",
           "updatedAt": "2021-08-09T20:02:47Z"
+        },
+        {
+          "author": "gselander",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Perhaps better use more intuitive notation:\r\n\r\nead = 1* ( type : int, ext_authz_data : any )",
+          "createdAt": "2021-08-12T13:26:09Z",
+          "updatedAt": "2021-08-12T13:26:09Z"
         }
       ]
     }

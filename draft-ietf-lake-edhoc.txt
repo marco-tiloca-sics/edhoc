@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                       J.P. Preuß Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 14 February 2022                                       Ericsson
-                                                          13 August 2021
+Expires: 18 February 2022                                       Ericsson
+                                                          17 August 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 February 2022.
+   This Internet-Draft will expire on 18 February 2022.
 
 Copyright Notice
 
@@ -801,14 +801,14 @@ Table of Contents
 
    When ID_CRED_x does not contain the actual credential, it may be very
    short, e.g., if the endpoints have agreed to use a key identifier
-   parameter "kid" or "kid2".  The latter is introduced to allow more
-   one-byte identifiers (see Section 8.6 and Section 8.7) which may be
-   useful in many scenarios since constrained devices only have a few
-   keys.  Note that in CBOR, the integers -24 to 23 and the empty byte
-   string h'' are encoded as one byte.
+   parameter "kid".  The latter is extended to support int values to
+   allow more one-byte identifiers (see Section 8.6 and Section 8.7)
+   which may be useful in many scenarios since constrained devices only
+   have a few keys.  Note that in CBOR, the integers -24 to 23 and the
+   empty byte string h'' are encoded as one byte.
 
-   *  ID_CRED_x = { TBD2 : key_id_x }, where key_id_x : kid2, for x = I
-      or R.
+   *  ID_CRED_x = { 4 : key_id_x }, where key_id_x : kid, for x = I or
+      R.
 
 3.6.  Cipher Suites
 
@@ -1422,10 +1422,10 @@ Table of Contents
       -  plaintext = ( ID_CRED_R / bstr / int, Signature_or_MAC_2, ?
          EAD_2 )
 
-         o  Note that if ID_CRED_R contains a single 'kid2' parameter,
-            i.e., ID_CRED_R = { TBD2 : kid_R }, only the byte string or
+         o  Note that if ID_CRED_R contains a single 'kid' parameter,
+            i.e., ID_CRED_R = { 4 : kid_R }, only the byte string or
             integer kid_R is conveyed in the plaintext encoded as a bstr
-            / int.
+            or int.
 
       -  CIPHERTEXT_2 = plaintext XOR KEYSTREAM_2
 
@@ -1531,8 +1531,8 @@ Table of Contents
       -  plaintext = ( ID_CRED_I / bstr / int, Signature_or_MAC_3, ?
          EAD_3 )
 
-         o  Note that if ID_CRED_I contains a single 'kid2' parameter,
-            i.e., ID_CRED_I = { TBD2 : kid_I }, only the byte string or
+         o  Note that if ID_CRED_I contains a single 'kid' parameter,
+            i.e., ID_CRED_I = { 4 : kid_I }, only the byte string or
             integer kid_I is conveyed in the plaintext encoded as a bstr
             or int.
 
@@ -2302,31 +2302,32 @@ Table of Contents
 
 8.6.  COSE Header Parameters Registry
 
-   IANA has added the COSE header parameter 'kid2' to the COSE Header
-   Parameters registry.  The kid2 parameter may point to a COSE key
-   common parameter 'kid' or 'kid2'.  The kid2 parameter can be used to
-   identify a key stored in a UCCS, in a CWT, or in a certificate.  The
-   Value Reference for this item is empty and omitted from the table
-   below.
+   IANA has extended the Value Type of the COSE Header Parameter 'kid'
+   to also allow the value int.  The resulting Value Type is bstr / int.
+   The kid parameter can be used to identify a key stored in a UCCS, in
+   a CWT, or in a public key certificate.  (The Value Registry for this
+   item is empty and omitted from the table below.)
 
    +------+-------+------------+----------------+-------------------+
    | Name | Label | Value Type | Description    | Reference         |
    +------+-------+------------+----------------+-------------------+
-   | kid2 | TBD2  | bstr / int | Key identifier | [[This document]] |
+   | kid  |   4   | bstr / int | Key identifier | [RFC9052]         |
+   |      |       |            |                | [[This document]] |
    +------+-------+------------+----------------+-------------------+
 
 8.7.  COSE Key Common Parameters Registry
 
-   IANA has added the COSE key common parameter 'kid2' to the COSE Key
-   Common Parameters registry.  The Value Reference for this item is
-   empty and omitted from the table below.
+   IANA has extended the Value Type of the COSE Key Common Parameter
+   'kid' to the COSE Key value int.  The resulting Value Type is bstr /
+   int.  (The Value Registry for this item is empty and omitted from the
+   table below.)
 
    +------+-------+------------+----------------+-------------------+
    | Name | Label | Value Type | Description    | Reference         |
    +------+-------+------------+----------------+-------------------+
-   | kid2 | TBD5  | bstr / int | Key identifi-  | [[This document]] |
-   |      |       |            | cation value - |                   |
-   |      |       |            | match to kid2  |                   |
+   | kid  |   2   | bstr / int | Key identifi-  | [RFC9052]         |
+   |      |       |            | cation value - | [[This document]] |
+   |      |       |            | match to kid   |                   |
    |      |       |            | in message     |                   |
    +------+-------+------------+----------------+-------------------+
 

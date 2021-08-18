@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                       J.P. Preuß Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 18 February 2022                                       Ericsson
-                                                          17 August 2021
+Expires: 19 February 2022                                       Ericsson
+                                                          18 August 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 February 2022.
+   This Internet-Draft will expire on 19 February 2022.
 
 Copyright Notice
 
@@ -88,7 +88,8 @@ Table of Contents
    4.  Key Derivation
      4.1.  Extract
      4.2.  Expand
-     4.3.  EDHOC-Exporter Interface
+     4.3.  EDHOC-Exporter
+     4.4.  EDHOC-KeyUpdate
    5.  Message Formatting and Processing
      5.1.  Message Processing Outline
      5.2.  EDHOC Message 1
@@ -1053,13 +1054,10 @@ Table of Contents
    pseudorandom keys (PRK) from ECDH shared secrets.  Expand is used to
    derive additional output keying material (OKM) from the PRKs.
 
-   *  PRK_2e is used to derive a keystream to encrypt message_2.
-
-   *  PRK_3e2m is used to produce a MAC in message_2 and to encrypt
-      message_3.
-
-   *  PRK_4x3m is used to produce a MAC in message_3, to encrypt
-      message_4, and to derive application specific data.
+   This section defines Extract, Expand and other key derivation
+   functions based on these: Expand is used to define EDHOC-KDF and in
+   turn EDHOC-Exporter, whereas Extract is used to define EDHOC-
+   KeyUpdate.
 
 4.1.  Extract
 
@@ -1073,18 +1071,19 @@ Table of Contents
    The definition of Extract depends on the EDHOC hash algorithm of the
    selected cipher suite:
 
-   *  If the EDHOC hash algorithm is SHA-2, then Extract( salt, IKM ) =
-      HKDF-Extract( salt, IKM ) [RFC5869].
+   *  if the EDHOC hash algorithm is SHA-2, then Extract( salt, IKM ) =
+      HKDF-Extract( salt, IKM ) [RFC5869]
 
-   *  If the EDHOC hash algorithm is SHAKE128, then Extract( salt, IKM )
-      = KMAC128( salt, IKM, 256, "" ).
+   *  if the EDHOC hash algorithm is SHAKE128, then Extract( salt, IKM )
+      = KMAC128( salt, IKM, 256, "" )
 
-   *  If the EDHOC hash algorithm is SHAKE256, then Extract( salt, IKM )
-      = KMAC256( salt, IKM, 512, "" ).
+   *  if the EDHOC hash algorithm is SHAKE256, then Extract( salt, IKM )
+      = KMAC256( salt, IKM, 512, "" )
 
 4.1.1.  PRK_2e
 
-   PRK_2e is derived with the following input:
+   PRK_2e is used to derive a keystream to encrypt message_2.  PRK_2e is
+   derived with the following input:
 
    *  The salt SHALL be the empty byte string.  Note that [RFC5869]
       specifies that if the salt is not provided, it is set to a string
@@ -1110,7 +1109,8 @@ Table of Contents
 
 4.1.2.  PRK_3e2m
 
-   PRK_3e2m is derived as follows:
+   PRK_3e2m is used to produce a MAC in message_2 and to encrypt
+   message_3.  PRK_3e2m is derived as follows:
 
    If the Responder authenticates with a static Diffie-Hellman key, then
    PRK_3e2m = Extract( PRK_2e, G_RX ), where G_RX is the ECDH shared
@@ -1119,7 +1119,9 @@ Table of Contents
 
 4.1.3.  PRK_4x3m
 
-   PRK_4x3m is derived as follows:
+   PRK_4x3m is used to produce a MAC in message_3, to encrypt message_4,
+   and to derive application specific data.  PRK_4x3m is derived as
+   follows:
 
    If the Initiator authenticates with a static Diffie-Hellman key, then
    PRK_4x3m = Extract( PRK_3e2m, G_IY ), where G_IY is the ECDH shared
@@ -1168,14 +1170,14 @@ Table of Contents
    The definition of Expand depends on the EDHOC hash algorithm of the
    selected cipher suite:
 
-   *  If the EDHOC hash algorithm is SHA-2, then Expand( PRK, info,
-      length ) = HKDF-Expand( PRK, info, length ) [RFC5869].
+   *  if the EDHOC hash algorithm is SHA-2, then Expand( PRK, info,
+      length ) = HKDF-Expand( PRK, info, length ) [RFC5869]
 
-   *  If the EDHOC hash algorithm is SHAKE128, then Expand( PRK, info,
-      length ) = KMAC128( PRK, info, L, "" ).
+   *  if the EDHOC hash algorithm is SHAKE128, then Expand( PRK, info,
+      length ) = KMAC128( PRK, info, L, "" )
 
-   *  If the EDHOC hash algorithm is SHAKE256, then Expand( PRK, info,
-      length ) = KMAC256( PRK, info, L, "" ).
+   *  if the EDHOC hash algorithm is SHAKE256, then Expand( PRK, info,
+      length ) = KMAC256( PRK, info, L, "" )
 
    where L = 8*length, the output length in bits.
 
@@ -1198,7 +1200,7 @@ Table of Contents
    use context as defined in Section 5.3.2 and Section 5.4.2,
    respectively.
 
-4.3.  EDHOC-Exporter Interface
+4.3.  EDHOC-Exporter
 
    Application keys and other application specific data can be derived
    using the EDHOC-Exporter interface defined as:
@@ -1224,6 +1226,8 @@ Table of Contents
    where H() is the hash function in the selected cipher suite.
    Examples of use of the EDHOC-Exporter are given in Section 5.5.2 and
    Appendix A.
+
+4.4.  EDHOC-KeyUpdate
 
    To provide forward secrecy in an even more efficient way than re-
    running EDHOC, EDHOC provides the function EDHOC-KeyUpdate.  When
@@ -1597,7 +1601,7 @@ Table of Contents
    Pass the connection identifiers (C_I, C_R) and the application
    algorithms in the selected cipher suite to the application.  The
    application can now derive application keys using the EDHOC-Exporter
-   interface.
+   interface, see Section 4.3.
 
    After sending message_3, the Initiator is assured that no other party
    than the Responder can compute the key PRK_4x3m (implicit key

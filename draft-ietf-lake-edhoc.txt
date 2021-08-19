@@ -673,9 +673,9 @@ Table of Contents
    encoded in bytewise lexicographic order of their deterministic
    encodings as specified in Section 4.2.1 of [RFC8949].
 
-   An example of CRED_x when the UCCS contains an X25519 static Diffie-
-   Hellman key and the parties have agreed on an EUI-64 identity is
-   shown below:
+   An example of CRED_x being a UCCS in bytewise lexicographic order
+   containing an X25519 static Diffie-Hellman key and where the parties
+   have agreed on an EUI-64 identity is shown below:
 
    {                                              /UCCS/
      2 : "42-50-31-FF-EF-37-32-39",               /sub/

@@ -708,8 +708,8 @@ Table of Contents
    about the intended endpoint, and in particular whether it is a
    specific identity or a set of identities.  Either EDHOC passes
    information about identity to the application for a decision, or
-   EDHOC has access to information necessary to make the decision on its
-   own.
+   EDHOC needs to have access to relevant information and makes the
+   decision on its own.
 
    *  When a Public Key Infrastructure (PKI) is used with certificates,
       the trust anchor is a Certification Authority (CA) certificate,

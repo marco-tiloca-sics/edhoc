@@ -4782,10 +4782,10 @@ Appendix G.  Transports Not Natively Providing Correlation
 
    The transport over CoAP (Appendix A.3) can serve as a blueprint for
    other server-client protocols: The client prepends the C_x which the
-   server selected (or, for message 1, a sentinel CBOR simple value
-   "true" which is not a valid C_x) to any request message it sends.
-   The server does not send any such indicator, as responses are matched
-   to request by the client-server protocol design.
+   server selected (or, for message 1, the CBOR simple value "true"
+   which is not a valid C_x) to any request message it sends.  The
+   server does not send any such indicator, as responses are matched to
+   request by the client-server protocol design.
 
    Protocols that do not provide any correlation at all can prescribe
    prepending of the peer's chosen C_x to all messages.

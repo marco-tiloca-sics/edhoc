@@ -635,9 +635,9 @@ Table of Contents
    credentials, e.g., one uses an UCCS and the other uses an X.509
    certificate.
 
-   The credentials CRED_I and CRED_R are signed or MACed (in the
-   Signature_OR_MAC field, depending on method) by the Initiator and the
-   Responder, respectively, see Section 5.4 and Section 5.3.
+   The credentials CRED_I and CRED_R are MACed by the Initiator and the
+   Responder, respectively, see Section 5.3.2 and Section 5.4.2, and
+   thus included in the message integrity calculation.
 
    When the credential is a certificate, CRED_x is an end-entity
    certificate (i.e., not the certificate chain).  In X.509 and C509
@@ -799,7 +799,7 @@ Table of Contents
    It is RECOMMENDED that ID_CRED_x uniquely identify the public
    authentication key as the recipient may otherwise have to try several
    keys.  ID_CRED_I and ID_CRED_R are transported in the ciphertext, see
-   Section 5.4 and Section 5.3.
+   Section 5.4.2 and Section 5.3.2.
 
    When ID_CRED_x does not contain the actual credential, it may be very
    short, e.g., if the endpoints have agreed to use a key identifier

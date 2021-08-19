@@ -806,11 +806,10 @@ Table of Contents
 
    When ID_CRED_x does not contain the actual credential, it may be very
    short, e.g., if the endpoints have agreed to use a key identifier
-   parameter "kid".  The latter is extended to support int values to
-   allow more one-byte identifiers (see Section 8.6 and Section 8.7)
+   parameter "kid".  Note that "kid" is extended to support int values
+   to allow more one-byte identifiers (see Section 8.6 and Section 8.7)
    which may be useful in many scenarios since constrained devices only
-   have a few keys.  Note that in CBOR, the integers -24 to 23 and the
-   empty byte string h'' are encoded as one byte.
+   have a few keys.
 
    *  ID_CRED_x = { 4 : key_id_x }, where key_id_x : kid, for x = I or
       R.

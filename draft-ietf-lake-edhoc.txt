@@ -656,7 +656,8 @@ Table of Contents
    "digitalSignature" and Diffie-Hellman public keys typically have key
    usage "keyAgreement".
 
-   When CRED_x is a CWT or UCCS, the claims set includes:
+   When CRED_x is Elliptic Curve based the claims set for CWT or UCCS
+   includes:
 
    *  the "cnf" claim with value COSE_Key, see [RFC8747], where the
       public key parameters depend on key type:

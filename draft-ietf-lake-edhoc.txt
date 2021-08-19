@@ -706,10 +706,12 @@ Table of Contents
    (information of which may be provisioned, e.g., out of band or in the
    external authorization data, see Section 3.8).
 
-   The EDHOC implementation must be able to receive and enforce
-   information from the application about what is the intended endpoint,
-   and in particular whether it is a specific identity or a set of
-   identities.
+   The EDHOC implementation or the application must enforce information
+   about the intended endpoint, and in particular whether it is a
+   specific identity or a set of identities.  Either EDHOC passes
+   information about identity to the application for a decision, or
+   EDHOC has access to information necessary to make the decision on its
+   own.
 
    *  When a Public Key Infrastructure (PKI) is used with certificates,
       the trust anchor is a Certification Authority (CA) certificate,

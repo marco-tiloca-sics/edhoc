@@ -565,7 +565,7 @@ Table of Contents
    (see Section 3.5.1), and even more so the choice of authentication
    credential (see Section 3.5.2) in case it is transported within the
    protocol (see Section 3.5.4).  EDHOC supports authentication
-   credentials for which COSE Header Parameters are defined, including:
+   credentials for which COSE header parameters are defined, including:
 
    *  X.509 v3 certificate [RFC5280]
 
@@ -765,14 +765,14 @@ Table of Contents
    *  ID_CRED_I is intended to facilitate for the Responder to retrieve
       the Initiator's public authentication key.
 
-   The identifiers ID_CRED_I and ID_CRED_R are CBOR maps registered in
-   the "COSE Header Parameters" IANA registry.  As such, ID_CRED_I and
-   ID_CRED_R typically also provide information about the format of
-   authentication credential, CRED_I and CRED_R, respectively.
+   The identifiers ID_CRED_I and ID_CRED_R are registered in the "COSE
+   Header Parameters" IANA registry.  As such, ID_CRED_I and ID_CRED_R
+   typically also provide information about the format of authentication
+   credential, CRED_I and CRED_R, respectively.
 
-   Public key certificates can be identified in different ways.  Header
-   parameters for identifying C509 certificates and X.509 certificates
-   are defined in [I-D.ietf-cose-cbor-encoded-cert] and
+   Public key certificates can be identified in different ways.  COSE
+   header parameters for identifying C509 certificates and X.509
+   certificates are defined in [I-D.ietf-cose-cbor-encoded-cert] and
    [I-D.ietf-cose-x509], for example:
 
    *  by a hash value with the "c5t" or "x5t" parameters;

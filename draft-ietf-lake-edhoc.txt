@@ -399,14 +399,13 @@ Table of Contents
 
 3.1.  General
 
-   An EDHOC message flow consists of three mandatory messages
-   (message_1, message_2, message_3) between Initiator and Responder, an
-   optional fourth message (message_4), plus an EDHOC error message.
-   EDHOC messages are CBOR Sequences [RFC8742], see Figure 3.  The
-   protocol elements in the figure are introduced in the following
-   sections.  Message formatting and processing is specified in
-   Section 5 and Section 6.  An implementation may support only
-   Initiator or only Responder.
+   The EDHOC protocol consists of three mandatory messages (message_1,
+   message_2, message_3) between Initiator and Responder, an optional
+   fourth message (message_4), plus an error message.  EDHOC messages
+   are CBOR Sequences [RFC8742], see Figure 3.  The protocol elements in
+   the figure are introduced in the following sections.  Message
+   formatting and processing is specified in Section 5 and Section 6.
+   An implementation may support only Initiator or only Responder.
 
    Application data is protected using the agreed application algorithms
    (AEAD, hash) in the selected cipher suite (see Section 3.6) and the
@@ -415,7 +414,7 @@ Table of Contents
    application/edhoc defined in Section 8.
 
    The Initiator can derive symmetric application keys after creating
-   EDHOC message_3, see Section 4.3.  Application protected data can
+   EDHOC message_3, see Section 4.3.  Protected application data can
    therefore be sent in parallel or together with EDHOC message_3.
 
    Initiator                                                   Responder

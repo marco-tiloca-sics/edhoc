@@ -545,7 +545,7 @@ Table of Contents
    settings for how the other endpoint's public key is transported,
    identified, and trusted.
 
-   The authentication key (i.e. the public key) appears in different
+   The authentication key (i.e., the public key) appears in different
    functions:
 
    1.  as part of the authentication credential CRED_x included in the
@@ -1158,8 +1158,8 @@ Table of Contents
    *  transcript_hash is a bstr set to one of the transcript hashes
       TH_2, TH_3, or TH_4 as defined in Sections 5.3.1, 5.4.1, and 4.3.
 
-   *  label is a tstr set to the name of the derived key or IV, i.e.
-      "KEYSTREAM_2", "MAC_2", "K_3ae", "IV_3ae", or "MAC_3".
+   *  label is a tstr set to the name of the derived key, IV or MAC;
+      i.e., "KEYSTREAM_2", "MAC_2", "K_3ae", "IV_3ae", or "MAC_3".
 
    *  context is a CBOR sequence, i.e., zero or more encoded CBOR data
       items
@@ -2867,7 +2867,7 @@ A.3.  Transferring EDHOC over CoAP
    CoAP server is Responder or Initiator.  For the default case when the
    server is Responder, the prepended connection identifier is C_R, and
    C_I if the server is Initiator.  If message_1 is sent to the server,
-   the CBOR simple value 'true' (0xf5) is sent in its place (given that
+   the CBOR simple value "true" (0xf5) is sent in its place (given that
    the server has not selected C_R yet).
 
    These identifiers are encoded in CBOR and thus self-delimiting.  They

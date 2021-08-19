@@ -2347,7 +2347,7 @@ Table of Contents
 8.6.  COSE Header Parameters Registry
 
    IANA has extended the Value Type of the COSE Header Parameter "kid"
-   to also allow the value type int.  The resulting Value Type is bstr /
+   to also allow the Value Type int.  The resulting Value Type is bstr /
    int.  The kid parameter can be used to identify a key stored in a
    UCCS, in a CWT, or in a public key certificate.  (The Value Registry
    for this item is empty and omitted from the table below.)
@@ -2362,7 +2362,7 @@ Table of Contents
 8.7.  COSE Key Common Parameters Registry
 
    IANA has extended the Value Type of the COSE Key Common Parameter
-   "kid" to the COSE Key value type int.  The resulting Value Type is
+   "kid" to the COSE Key Value Type int.  The resulting Value Type is
    bstr / int.  (The Value Registry for this item is empty and omitted
    from the table below.)
 

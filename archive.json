@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-15T01:00:08.961567+00:00",
+  "timestamp": "2021-08-19T00:53:30.591917+00:00",
   "repo": "lake-wg/edhoc",
   "labels": [
     {
@@ -4700,15 +4700,15 @@
       "id": "MDU6SXNzdWU4OTQwOTU2MTA=",
       "title": "C_1: use \"nil\" instead of \"null\"",
       "url": "https://github.com/lake-wg/edhoc/issues/118",
-      "state": "CLOSED",
+      "state": "OPEN",
       "author": "chrysn",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "CDDL knows both names for \"null\" and \"nil\", but (especially with #117) a careless reader could read the \"prepending a null\" as \"prepend the byte zero\", which is not what is meant (given that the prepending is introduced as \"prepend the CBOR serialization of C_x\").\r\n\r\nA downside is that in CBOR itself, the value is always called \"Null\" -- but unlike CDDL (and COSE), it does not introduce much of terminology for the simple types (it just describes it as meaning \"null\"; most of the remaining use of the term is in the context of a JSON null).\r\n\r\nI suggest this change in an issue rather than in a PR, as doing any change now while #117 is in the air would just create more work later anyway.\r\n\r\nIf this is accepted (and \"let's better stick to plain CBOR terminology\" is still a plausible outcome), I can PR this once #117's fate is decided.",
       "createdAt": "2021-05-18T08:01:25Z",
-      "updatedAt": "2021-07-19T05:57:43Z",
-      "closedAt": "2021-07-19T05:57:43Z",
+      "updatedAt": "2021-08-18T17:58:47Z",
+      "closedAt": null,
       "comments": [
         {
           "author": "emanjon",
@@ -4730,6 +4730,27 @@
           "body": "OTOH, if it just a matter of disambiguating the word \"null\", then we could use \"nil\" instead. Given that we stick to the simple CBOR value 0xf6, as in -08, then making the change is an improvement.",
           "createdAt": "2021-07-15T20:47:35Z",
           "updatedAt": "2021-07-15T20:47:35Z"
+        },
+        {
+          "author": "gselander",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Given the usefulness to implementers of CBOR tools like cbor.me,  I  think there is a good reason to stick to the diagnostic notation in RFC 8949. For this reason I reopen this issue.",
+          "createdAt": "2021-08-18T17:07:11Z",
+          "updatedAt": "2021-08-18T17:07:11Z"
+        },
+        {
+          "author": "gselander",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We should thus replace the current 'nil' with some 1-byte value with  RFC 8949 diagnostic notation. Instead of reverting to 'null' I propose we pick another simple value. I did not note any objection to the proposal above to use 'true' and will therefore make that change now.",
+          "createdAt": "2021-08-18T17:43:23Z",
+          "updatedAt": "2021-08-18T17:43:23Z"
+        },
+        {
+          "author": "gselander",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Change made in 31f2ce58d",
+          "createdAt": "2021-08-18T17:58:47Z",
+          "updatedAt": "2021-08-18T17:58:47Z"
         }
       ]
     },
@@ -5294,7 +5315,7 @@
       "labels": [],
       "body": "```\r\nead = (\r\n  type : int,\r\n  1* ext_authz_data : any,\r\n)\r\n```\r\n\r\nWhat is type? Is that the the external security application or the content, i.e., the sequence of ext_authz_data?\r\n\r\nIf type is the external security application, is the same type supposed to be used in message_1, 2, 3, and 4?\r\n\r\nIf type referes to the ext_authz_data, would it be better with:\r\n\r\n`\r\nead = + ( type : int, ext_authz_data : any )\r\n`",
       "createdAt": "2021-08-05T07:08:40Z",
-      "updatedAt": "2021-08-12T13:26:09Z",
+      "updatedAt": "2021-08-17T14:02:37Z",
       "closedAt": null,
       "comments": [
         {
@@ -5310,6 +5331,20 @@
           "body": "Perhaps better use more intuitive notation:\r\n\r\nead = 1* ( type : int, ext_authz_data : any )",
           "createdAt": "2021-08-12T13:26:09Z",
           "updatedAt": "2021-08-12T13:26:09Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This looks good to me. Now EAD is well-specified. I think we can close this unless there are any further comments.\r\n\r\nQuestion if we should have two CDDL indicators. Probably not\r\n\r\nCurrently the CDDL is:\r\n\r\n```\r\n? EAD_1 : ead\r\nead = 1* ( type : int, ext_authz_data : any )\r\n```\r\n\r\nThis can be written as\r\n\r\n```\r\nEAD_1 : ead\r\nead = * ( type : int, ext_authz_data : any )\r\n```\r\n\r\nor\r\n\r\n```\r\n* EAD_1 : ead\r\nead = ( type : int, ext_authz_data : any )\r\n\r\n```\r\n\r\n\r\n\r\n",
+          "createdAt": "2021-08-17T13:45:12Z",
+          "updatedAt": "2021-08-17T13:45:50Z"
+        },
+        {
+          "author": "gselander",
+          "authorAssociation": "COLLABORATOR",
+          "body": "When I read these I make slightly different interpretations:\r\n\r\nThe current says EAD_1 is optional, i.e. need not be present.\r\nThe second says EAD_1 is a fixed field in the protocol but it may be empty.\r\nThe third says there may be zero or more EAD_1 fields.\r\n\r\nThe first is mostly inline with my intuition of EAD. I'm fine with the second. I'm not in favour of the third.\r\n\r\n",
+          "createdAt": "2021-08-17T14:02:37Z",
+          "updatedAt": "2021-08-17T14:02:37Z"
         }
       ]
     }

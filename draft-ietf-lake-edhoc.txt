@@ -610,11 +610,12 @@ Table of Contents
    shared secret which enables significant reductions in message sizes.
    When using static Diffie-Hellman keys the Initiator's and Responder's
    private authentication keys are called I and R, respectively, and the
-   public authentication keys are called G_I and G_R, respectively.  The
-   authentication key algorithm needs to specified with enough
+   public authentication keys are called G_I and G_R, respectively.
+
+   The authentication key algorithm needs to be specified with enough
    parameters to make it completely determined.  Note that for most
-   signature algorithms, the signature is determined by the signature
-   algorithm and the authentication key algorithm together.  For
+   signature algorithms, the signature is determined jointly by the
+   signature algorithm and the authentication key algorithm.  For
    example, the curve used in the signature is typically determined by
    the authentication key parameters.
 

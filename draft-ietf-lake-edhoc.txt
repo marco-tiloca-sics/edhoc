@@ -564,8 +564,8 @@ Table of Contents
    The choice of authentication key has an impact on the message size
    (see Section 3.5.1), and even more so the choice of authentication
    credential (see Section 3.5.2) in case it is transported within the
-   protocol (see Section 3.5.4).  The following list shows possible
-   authentication credentials:
+   protocol (see Section 3.5.4).  EDHOC supports authentication
+   credentials for which COSE Header Parameters are defined, including:
 
    *  X.509 v3 certificate [RFC5280]
 

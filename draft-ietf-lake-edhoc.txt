@@ -641,11 +641,11 @@ Table of Contents
    register public keys without proving knowledge of the private key,
    SIGMA [SIGMA] enforces a MAC to be calculated over the "identity".
    EDHOC follows SIGMA by calculating a MAC over the whole credential,
-   which in case of a X.509 certificate includes the "subject" and
-   "subjectAltName" fields, and in the case of CWT or UCCS includes the
-   "sub" claim, see Section 3.5.3.  While the SIGMA paper only focuses
-   on the identity, the same principle is true for any information such
-   as policies connected to the public key.
+   which in case of a X.509 or C509 certificate includes the "subject"
+   and "subjectAltName" fields, and in the case of CWT or UCCS includes
+   the "sub" claim, see Section 3.5.3.  While the SIGMA paper only
+   focuses on the identity, the same principle is true for any
+   information such as policies connected to the public key.
 
    When the credential is a certificate, CRED_x is an end-entity
    certificate (i.e., not the certificate chain).  In X.509 and C509
@@ -991,7 +991,7 @@ Table of Contents
    3.  Profile for authentication credentials (CRED_I, CRED_R; see
        Section 3.5.2), e.g., profile for certificate or UCCS, including
        supported authentication key algorithms (subject public key
-       algorithm in X.509 certificate).
+       algorithm in X.509 or C509 certificate).
 
    4.  Type used to identify authentication credentials (ID_CRED_I,
        ID_CRED_R; see Section 3.5.4).

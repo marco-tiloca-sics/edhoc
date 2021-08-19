@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                       J.P. Preuß Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 19 February 2022                                       Ericsson
-                                                          18 August 2021
+Expires: 20 February 2022                                       Ericsson
+                                                          19 August 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 February 2022.
+   This Internet-Draft will expire on 20 February 2022.
 
 Copyright Notice
 
@@ -3025,8 +3025,7 @@ C.1.  CBOR and CDDL
    integers (int, uint), simple values, byte strings (bstr), and text
    strings (tstr), CBOR also supports arrays [] of data items, maps {}
    of pairs of data items, and sequences [RFC8742] of data items.  Some
-   examples are given below.  (To avoid potential ambiguity we
-   consequently use the term "null" for the simple value 0xf6.)
+   examples are given below.
 
    For a complete specification and more examples, see [RFC8949] and
    [RFC8610].  We recommend implementors to get used to CBOR by using
@@ -3039,13 +3038,12 @@ C.1.  CBOR and CDDL
     -24                 0x37                 negative integer
     -25                 0x3818               negative integer
     true                0xf5                 simple value
-    null                0xf6                 simple value
     h'12cd'             0x4212cd             byte string
     '12cd'              0x4431326364         byte string
     "12cd"              0x6431326364         text string
     { 4 : h'cd' }       0xa10441cd           map
-    << 1, 2, null >>    0x430102f6           byte string
-    [ 1, 2, null ]      0x830102f6           array
+    << 1, 2, true >>    0x430102f5           byte string
+    [ 1, 2, true ]      0x830102f5           array
     ( 1, 2, true )      0x0102f5             sequence
     1, 2, true          0x0102f5             sequence
     ------------------------------------------------------------------

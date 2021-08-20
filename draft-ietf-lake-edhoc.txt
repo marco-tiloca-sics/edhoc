@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                       J.P. Preuß Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 20 February 2022                                       Ericsson
-                                                          19 August 2021
+Expires: 21 February 2022                                       Ericsson
+                                                          20 August 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 February 2022.
+   This Internet-Draft will expire on 21 February 2022.
 
 Copyright Notice
 
@@ -260,12 +260,12 @@ Table of Contents
 
    The remainder of the document is organized as follows: Section 2
    outlines EDHOC authenticated with digital signatures, Section 3
-   describes the protocol elements of EDHOC, including message flow, and
-   formatting of the ephemeral public keys, Section 4 describes the key
-   derivation, Section 5 specifies EDHOC with authentication based on
-   signature keys or static Diffie-Hellman keys, Section 6 specifies the
-   EDHOC error message, and Appendix A describes how EDHOC can be
-   transferred in CoAP and used to establish an OSCORE security context.
+   describes the protocol elements of EDHOC, including formatting of the
+   ephemeral public keys, Section 4 specifies the key derivation,
+   Section 5 specifies message processing for EDHOC authenticated with
+   signature keys or static Diffie-Hellman keys, Section 6 describes the
+   error messages, and Appendix A shows how to transfer EDHOC with CoAP
+   and establish an OSCORE security context.
 
 1.5.  Terminology and Requirements Language
 
@@ -2740,7 +2740,7 @@ Table of Contents
 
 Appendix A.  Use with OSCORE and Transfer over CoAP
 
-   This sppendix describes how to select EDHOC connection identifiers
+   This appendix describes how to select EDHOC connection identifiers
    and derive an OSCORE security context when OSCORE is used with EDHOC,
    and how to transfer EDHOC messages over CoAP.
 

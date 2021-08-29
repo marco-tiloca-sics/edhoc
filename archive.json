@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-22T00:58:48.785798+00:00",
+  "timestamp": "2021-08-29T01:02:20.377887+00:00",
   "repo": "lake-wg/edhoc",
   "labels": [
     {
@@ -440,7 +440,7 @@
       "labels": [],
       "body": "Extracted from https://arxiv.org/abs/2007.11427\r\nhttps://www.ietf.org/proceedings/108/slides/slides-108-lake-tamarin-study-of-edhoc-00\r\n\r\n\"Section 3.2 of the specification states that a parties are required to be configured with a policy restricting the set of peers an they are allowed to run EDHOC with.\"\r\n\r\n\"the initiator is not required to verify that the ID CRED R received in message 2 is the same as the one the application intended when initiating the EDHOC run\"\r\n\r\n\"the initiator [need] to match ID CRED R to the intended identity provided by the application\"\r\n\r\n\"the application must be able to instruct EDHOC to not accept the same identity in the next attempt\"\r\n",
       "createdAt": "2020-08-01T09:20:53Z",
-      "updatedAt": "2020-11-16T06:31:36Z",
+      "updatedAt": "2021-08-26T16:47:18Z",
       "closedAt": null,
       "comments": [
         {
@@ -456,6 +456,13 @@
           "body": "At least for [rd.link](https://tools.ietf.org/html/draft-amsuess-t2trg-rdlink-01) purposes (which is admittedly just an independent draft right now), an RPK can be a standalone thing to verify, and adding any further identifier (like an EUI-64 picked by the identifying party) that'd needed to be known would just weigh down discovery needlessly. Sure, a subject identifier can be derived from the known RPK, but then what's the value of it. (That is saying nothing against having an agreed-on subject, of course.)",
           "createdAt": "2020-11-16T06:31:36Z",
           "updatedAt": "2020-11-16T06:31:36Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Can we close this? There has been quite a lot of work in this area, so the dicussion here seems a bit outdated. If anything remains, it might be better to open a new focused issue.",
+          "createdAt": "2021-08-26T16:47:18Z",
+          "updatedAt": "2021-08-26T16:47:18Z"
         }
       ]
     },
@@ -2467,15 +2474,15 @@
       "id": "MDU6SXNzdWU3OTYxMjUwMjc=",
       "title": "Max retransmissions of EDHOC messages",
       "url": "https://github.com/lake-wg/edhoc/issues/64",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "marco-tiloca-sics",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "Thinking of CoAP for transport:\r\n\r\n1. Let's say that the Initiator (Responder) trasmits Message_1 (Message_2) as a Confirmable message, does not receive an ACK from the other peer and retransmits the message. This happens again multiple times, until the maximum number of retransmissions is reached. Should the sender peer simply discontinue the protocol?\r\n\r\n2. Let's say that the same as above happens with the Initiator (Responder) transmitting Message_3 (Message_4). Should the sender peer delete PRK_4x3m, TH_4 and any possible application keys derived with the exporter, including the possible OSCORE Security Context?",
       "createdAt": "2021-01-28T15:47:09Z",
-      "updatedAt": "2021-08-13T09:44:04Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-26T16:43:22Z",
+      "closedAt": "2021-08-26T16:43:21Z",
       "comments": [
         {
           "author": "gselander",
@@ -2518,6 +2525,13 @@
           "body": "The text in Section 5.1 \"Message Processing Outline\" is quite general. I added \"for some reason\" to \"If the processing fails\" without going into the specific detail of that it may be lack of confirmation on transport layer.\r\n\r\n\r\n\r\n",
           "createdAt": "2021-08-13T09:44:04Z",
           "updatedAt": "2021-08-13T09:44:04Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Looks like this can be closed.",
+          "createdAt": "2021-08-26T16:43:21Z",
+          "updatedAt": "2021-08-26T16:43:21Z"
         }
       ]
     },
@@ -3439,7 +3453,7 @@
       "labels": [],
       "body": "Given we're now moving towards that EDHOC needs to know the application (with its applicability statement), it would make sense to move the definition of the .well-known/edhoc resource over to @fpalombini's draft on EDHOC/OSCORE.\r\n\r\nThe general mechanisms of EDHOC-over-CoAP could stay here (which eg. say which corr to use, and which content format), but using it for OSCORE key extraction could be the exclusive user of .well-known/edhoc (which may get a different name in the course of this). Other applications would then be indicated with different paths.",
       "createdAt": "2021-03-04T16:23:53Z",
-      "updatedAt": "2021-07-16T14:52:34Z",
+      "updatedAt": "2021-08-26T16:44:39Z",
       "closedAt": null,
       "comments": [
         {
@@ -3483,6 +3497,13 @@
           "body": "Yes, that's the current distribution and I see your points. Ok to keep it here then",
           "createdAt": "2021-07-16T14:52:34Z",
           "updatedAt": "2021-07-16T14:52:34Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Can we close this?",
+          "createdAt": "2021-08-26T16:44:39Z",
+          "updatedAt": "2021-08-26T16:44:39Z"
         }
       ]
     },
@@ -3640,15 +3661,15 @@
       "id": "MDU6SXNzdWU4MjM2OTM5NTg=",
       "title": "Opportunistic use",
       "url": "https://github.com/lake-wg/edhoc/issues/88",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "chrysn",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "EDHOC looks to me like it should be usable in situations where one party has no need (or intention) to authenticate, but still wants to authenticate the other party or just use opportunistic encryption.\r\n\r\nOne use case might be a constrained device A obtaining the certificate indicated by device B in the A-B EDHOC exchange from the certificate URI at C indicated by B. A has no need to present credentials (C hosts the certs publicly), but doesn't want to reveal to passive evesdroppers that it's talking to B. It doesn't need to authenticate C, but that might still be a good idea to lock out active MITMs.\r\n\r\nMy impression is that this is possible with EDHOC as it is and that EDHOC is suitable for the task (if not, stop reading and tell me).\r\n\r\nIf it is suitable, would both of these work?\r\n* Create (in COSE) a key ID type where a RPK that is CRED_x can be transported in ID_CRED_x (useful where you want to come back w/o having any original claims on first use)\r\n* Have a key where your ID_CRED_x says \"just what my ephemeral key is\". That'd make exchanges just as compact as short-ID'd RPKs, and still be good-enough for unilateral authentication.",
       "createdAt": "2021-03-06T16:53:55Z",
-      "updatedAt": "2021-07-24T11:47:15Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-26T16:42:22Z",
+      "closedAt": "2021-08-26T16:42:22Z",
       "comments": [
         {
           "author": "chrysn",
@@ -3684,6 +3705,13 @@
           "body": "The use of UCCS for trust-on-first-use is now included in the master branch, see a1b25ba and commits in its vicinity.\r\n\r\nCan we close the issue?",
           "createdAt": "2021-07-24T11:47:15Z",
           "updatedAt": "2021-07-24T11:47:15Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think this can be closed.",
+          "createdAt": "2021-08-26T16:42:22Z",
+          "updatedAt": "2021-08-26T16:42:22Z"
         }
       ]
     },
@@ -4413,15 +4441,15 @@
       "id": "MDU6SXNzdWU4NjQ3Mzg2NDQ=",
       "title": "Optimization of message size",
       "url": "https://github.com/lake-wg/edhoc/issues/103",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "gselander",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "We need to nail down what optimizations to make in the final message format. \r\n\r\nKnown lengths of byte strings can be used as discussed in the old issue tracker:\r\nhttps://github.com/EricssonResearch/EDHOC/issues/95\r\n",
       "createdAt": "2021-04-22T09:27:34Z",
-      "updatedAt": "2021-07-15T20:41:33Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-26T16:41:12Z",
+      "closedAt": "2021-08-26T16:41:12Z",
       "comments": [
         {
           "author": "emanjon",
@@ -4457,6 +4485,13 @@
           "body": "As discussed in the recent interim meeting, we postpone the resolution of this issue until the draft is ready for WGLC.",
           "createdAt": "2021-07-15T20:41:33Z",
           "updatedAt": "2021-07-15T20:41:33Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think this can be closed now. We have discussed and done the agreed optimizations. ",
+          "createdAt": "2021-08-26T16:41:11Z",
+          "updatedAt": "2021-08-26T16:41:11Z"
         }
       ]
     },
@@ -4662,15 +4697,15 @@
       "id": "MDU6SXNzdWU4OTA0NTc2OTg=",
       "title": "Transfer CWT",
       "url": "https://github.com/lake-wg/edhoc/issues/115",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Discussion today in COSE on how to do RPK by value in EDHOC. Suggestions to send a COSE_Key or a C509. Additional suggestion from Carsten to use CWT. Several issues in the old GitHub on CWTs, that were not transfered to the new GitHub:\r\n\r\nhttps://github.com/EricssonResearch/EDHOC/issues/5\r\nhttps://github.com/EricssonResearch/EDHOC/issues/33\r\nhttps://github.com/EricssonResearch/EDHOC/issues/37\r\n\r\nDiscussion to transfer CWT in kid, in Auxilery data, and as COSE header parameter.\r\n\r\nTransfering CWT is related to issues #88, #62,  #90, #82",
       "createdAt": "2021-05-12T20:26:17Z",
-      "updatedAt": "2021-07-24T11:45:51Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-26T16:45:14Z",
+      "closedAt": "2021-08-26T16:45:14Z",
       "comments": [
         {
           "author": "emanjon",
@@ -4692,6 +4727,13 @@
           "body": "This change has now been done in the master branch, see a1b25ba and commits in its vicinity.\r\n\r\nCan we close the issue?",
           "createdAt": "2021-07-24T11:45:51Z",
           "updatedAt": "2021-07-24T11:45:51Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This has now been addressed.",
+          "createdAt": "2021-08-26T16:45:14Z",
+          "updatedAt": "2021-08-26T16:45:14Z"
         }
       ]
     },
@@ -4978,15 +5020,15 @@
       "id": "MDU6SXNzdWU4OTc5MDA5ODA=",
       "title": "CRED_x in CWT format ",
       "url": "https://github.com/lake-wg/edhoc/issues/125",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "gselander",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "In the example of CRED_x in 3.3.3, consider to replace own construct with CWT:\r\n\r\nOLD:\r\n\r\n~~~~~~~~~~\r\nCRED_x = {\r\n  1:  1,\r\n -1:  4,\r\n -2:  h'b1a3e89460e88d3a8d54211dc95f0b90\r\n        3ff205eb71912d6db8f4af980d2db83a',\r\n \"subject name\" : \"42-50-31-FF-EF-37-32-39\"\r\n}\r\n~~~~~~~~~~\r\n\r\nNEW:\r\n~~~~~~~~~~\r\nCRED_x = {     /CWT/\r\n 2 : \"42-50-31-FF-EF-37-32-39\",    /sub/\r\n 8 : {    /cnf/\r\n       1 : {     /COSE_Key/\r\n              1:  1,\r\n             -1:  4,\r\n             -2:  h'b1a3e89460e88d3a8d54211dc95f0b90\r\n                      3ff205eb71912d6db8f4af980d2db83a',\r\n             }\r\n       }\r\n}\r\n~~~~~~~~~~~",
       "createdAt": "2021-05-21T10:13:32Z",
-      "updatedAt": "2021-07-24T11:44:28Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-26T16:40:22Z",
+      "closedAt": "2021-08-26T16:40:22Z",
       "comments": [
         {
           "author": "gselander",
@@ -5008,6 +5050,13 @@
           "body": "This change has now been done in the master branch, see a1b25ba9 and commits in its vicinity.\r\n\r\nCan we close the issue?",
           "createdAt": "2021-07-24T11:44:28Z",
           "updatedAt": "2021-07-24T11:44:28Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Seems like this can be closed",
+          "createdAt": "2021-08-26T16:40:22Z",
+          "updatedAt": "2021-08-26T16:40:22Z"
         }
       ]
     },
@@ -5095,15 +5144,15 @@
       "id": "MDU6SXNzdWU5NDk5NTYzODA=",
       "title": "Detailing EDHOC error in CoAP error",
       "url": "https://github.com/lake-wg/edhoc/issues/134",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "gselander",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "New section A.3.1 (see below) has this requirement:\r\n\r\n\"EDHOC error messages sent as CoAP responses MUST be error\r\n   responses\"\r\n\r\n1. Does all CoAP error responses support payload? \r\n2. Should it not be stated that they MUST contain the EDHOC message as payload? \r\n3. Should Content-Format be included in those messages?\r\n\r\n\r\n\"  When using EDHOC over CoAP for establishing an OSCORE Security\r\n   Context, EDHOC error messages sent as CoAP responses MUST be error\r\n   responses, i.e., they MUST specify a CoAP error response code.  In\r\n   particular, it is RECOMMENDED that such error responses have response\r\n   code either 4.00 (Bad Request) in case of client error (e.g., due to\r\n   a malformed EDHOC message), or 5.00 (Internal Server Error) in case\r\n   of server error (e.g., due to failure in deriving EDHOC key\r\n   material).\"\r\n\r\n\r\n\r\n",
       "createdAt": "2021-07-21T17:48:18Z",
-      "updatedAt": "2021-08-21T15:19:37Z",
-      "closedAt": null,
+      "updatedAt": "2021-08-26T16:39:38Z",
+      "closedAt": "2021-08-26T16:39:38Z",
       "comments": [
         {
           "author": "gselander",
@@ -5196,7 +5245,7 @@
       "labels": [],
       "body": "Quoting main branch:\r\n\r\n> The EAD fields [...] special considerations need to be made such that a) it does not violate security, privacy etc. requirements of the service which uses this data, and b) it does not violate the security properties of EDHOC.\r\n\r\nI see how an application developer would take a into account, but I think that for b, it'd help to give concrete pointers on what not to do. (Right now, other than \"putting anything in there that's picked out of the EDHOC engine\", I don't have any clue as to what could endanger EDHOC here).",
       "createdAt": "2021-07-29T19:31:44Z",
-      "updatedAt": "2021-08-10T07:21:39Z",
+      "updatedAt": "2021-08-26T16:38:11Z",
       "closedAt": null,
       "comments": [
         {
@@ -5205,6 +5254,13 @@
           "body": "This needs to be rephrased. The security/privacy requirements of the security application using EAD may be other than EDHOC. The text should make clear that: \r\n1. the content of EAD may impact the security properties provided by EDHOC\r\n2. the security properties of EDHOC carrying specific EAD types need to be matched against the requirements of the security application",
           "createdAt": "2021-08-10T07:21:39Z",
           "updatedAt": "2021-08-10T07:21:39Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Can we close this now or is more text needed?",
+          "createdAt": "2021-08-26T16:38:11Z",
+          "updatedAt": "2021-08-26T16:38:11Z"
         }
       ]
     },

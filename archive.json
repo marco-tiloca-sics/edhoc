@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-08-29T01:02:20.377887+00:00",
+  "timestamp": "2021-09-02T01:01:14.298931+00:00",
   "repo": "lake-wg/edhoc",
   "labels": [
     {
@@ -5431,6 +5431,99 @@
           "updatedAt": "2021-08-21T15:18:50Z"
         }
       ]
+    },
+    {
+      "number": 151,
+      "id": "MDU6SXNzdWU5ODM0NjQxMzM=",
+      "title": "Simpler and shorter SUITES_I",
+      "url": "https://github.com/lake-wg/edhoc/issues/151",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The current definition of SUITES_I is that the Initiator can chose any truncation of the list of supported cipher suites as long as the selected cipher suite is included. This works and allows the Initiator to give the Responder information about the full list. This is however a bit complex and has led to misunderstandings of the test vectors where several people thought the test vectors were wrong.\r\n\r\ni.e. the following are all valid\r\n\r\n```\r\nSUITES_I = [6, 5, 6]\r\nSUITES_I = [6, 5, 6, 7]\r\nSUITES_I = [6, 5, 6, 7, 8]\r\n```\r\n\r\nI think we should simplify SUITES_I by mandating that the last suite in the list is the selected. This makes SUITES_I much easier to understand and lowers message size when an array is used. Giving the Responder info is not so important.\r\n\r\n`SUITES_I = [5, 6] `\r\n\r\nCDDL\r\n\r\n`SUITES_I : [ 2* suite ] / suite`",
+      "createdAt": "2021-08-31T05:39:55Z",
+      "updatedAt": "2021-09-01T15:19:43Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Maybe a recommendation that SUITES_R SHOULD contain all cipher suites that R supports.",
+          "createdAt": "2021-08-31T09:01:06Z",
+          "updatedAt": "2021-08-31T09:01:06Z"
+        },
+        {
+          "author": "gselander",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Currently\r\nSUITES_R : [ supported : 2* suite ] / suite\r\n\r\nWe may keep that, or remove \"supported\"\r\nSUITES_R : [ 2* suite ] / suite\r\n\r\nAlternatively, we may define\r\nSUITES_I : [ supported : 2* suite ] / suite\r\n\r\nAny preference?",
+          "createdAt": "2021-08-31T09:49:23Z",
+          "updatedAt": "2021-08-31T09:49:23Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "They should be the same:\r\n\r\n`suites = [ 2* suite ] / suite`\r\n\r\nor \r\n\r\n`suites = [ supported : 2* suite ] / suite`\r\n\r\n\r\nAnd then\r\n\r\n```\r\nSUITES_I : suites,\r\nSUITES_R : suites,\r\n```",
+          "createdAt": "2021-08-31T11:03:48Z",
+          "updatedAt": "2021-08-31T11:03:48Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "COLLABORATOR",
+          "body": "This needs to be defined as a CDDL type.\r\n`\r\nsuites = [ 2* suite ] / suite`\r\n\r\nSee #155 \r\n",
+          "createdAt": "2021-09-01T15:19:43Z",
+          "updatedAt": "2021-09-01T15:19:43Z"
+        }
+      ]
+    },
+    {
+      "number": 153,
+      "id": "MDU6SXNzdWU5ODM5NjQ4NzQ=",
+      "title": "There are two different mac_length ",
+      "url": "https://github.com/lake-wg/edhoc/issues/153",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Current specification could give the impression that there is a single mac_length. But the mac length in message_2 and message_3 may be different.",
+      "createdAt": "2021-08-31T15:00:31Z",
+      "updatedAt": "2021-08-31T15:00:31Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 154,
+      "id": "MDU6SXNzdWU5ODUxMDkwMTQ=",
+      "title": "Definition of info in the key derivation",
+      "url": "https://github.com/lake-wg/edhoc/issues/154",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The new definition of info in th ecurrent specification is.\r\n\r\n```\r\n   OKM = EDHOC-KDF( PRK, transcript_hash, label, context, length )\r\n       = Expand( PRK, info, length )\r\n\r\nwhere info is the CBOR encoding of\r\n\r\ninfo = [\r\n   edhoc_aead_id : int / tstr,\r\n   transcript_hash : bstr,\r\n   label : tstr,\r\n   * context : any,\r\n   length : uint,\r\n]\r\n```\r\n\r\nI noticed two problems with this while implementing.\r\n1. To create the array you need to parse context to see how many items it contains. \r\n2. Unless context is validated, length is not strictly defined (an attacker could create collisions)\r\n\r\nI suggest that info is changed to:\r\n\r\n```\r\ninfo = (\r\n   edhoc_aead_id : int / tstr,\r\n   transcript_hash : bstr,\r\n   label : tstr,\r\n   length : uint,\r\n   * context : any,\r\n)\r\n\r\n```\r\n\r\n",
+      "createdAt": "2021-09-01T12:47:05Z",
+      "updatedAt": "2021-09-01T12:47:05Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 155,
+      "id": "MDU6SXNzdWU5ODUyODI2MDU=",
+      "title": "ERR_TYPE for ERR_CODE = 2 is a name instead of type.",
+      "url": "https://github.com/lake-wg/edhoc/issues/155",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "SUITES_R is a name. The type needs to be defined and the table changed. This can be done in PR #152 \r\n\r\n`suites = [ 2* suite ] / suite,`\r\n\r\n```\r\n   +----------+---------------+----------------------------------------+\r\n   | ERR_CODE | ERR_INFO Type | Description                            |\r\n   +==========+===============+========================================+\r\n   |        0 | any           | Success                                |\r\n   +----------+---------------+----------------------------------------+\r\n   |        1 | tstr          | Unspecified                            |\r\n   +----------+---------------+----------------------------------------+\r\n   |        2 | suites        | Wrong selected cipher suite            |\r\n   +----------+---------------+----------------------------------------+\r\n```",
+      "createdAt": "2021-09-01T15:17:41Z",
+      "updatedAt": "2021-09-01T15:17:41Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -6991,6 +7084,32 @@
       "mergeCommit": {
         "oid": "d34d56e95913c0be20e505af4701e10220e68f8a"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 152,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzIzMzYwNzQw",
+      "title": "Narrowed definition of SUITES_I",
+      "url": "https://github.com/lake-wg/edhoc/pull/152",
+      "state": "OPEN",
+      "author": "gselander",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Addressing #151",
+      "createdAt": "2021-08-31T13:11:23Z",
+      "updatedAt": "2021-08-31T13:11:24Z",
+      "baseRepository": "lake-wg/edhoc",
+      "baseRefName": "master",
+      "baseRefOid": "c76785d4b8efd6e4b6f0f33ba9eb8172853c5fa9",
+      "headRepository": "lake-wg/edhoc",
+      "headRefName": "simplified-suites",
+      "headRefOid": "c5357019aaf99b7b7cb9eb8c7da74166bec36c25",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }

@@ -912,10 +912,10 @@ Table of Contents
 
    The Initiator needs to have a list of cipher suites it supports in
    order of preference.  The Responder needs to have a list of cipher
-   suites it supports.  SUITES_I is a CBOR array containing cipher
-   suites supported by the Initiator, formatted and processed as
-   detailed in Section 5.2.1 to secure the cipher suite negotiation.
-   Examples of cipher suite negotiation are given in Section 6.3.2.
+   suites it supports.  SUITES_I contains cipher suites supported by the
+   Initiator, formatted and processed as detailed in Section 5.2.1 to
+   secure the cipher suite negotiation.  Examples of cipher suite
+   negotiation are given in Section 6.3.2.
 
 3.7.  Ephemeral Public Keys
 

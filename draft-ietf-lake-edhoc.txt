@@ -116,10 +116,11 @@ Table of Contents
      8.6.  COSE Header Parameters Registry
      8.7.  COSE Header Parameters Registry
      8.8.  COSE Key Common Parameters Registry
-     8.9.  The Well-Known URI Registry
-     8.10. Media Types Registry
-     8.11. CoAP Content-Formats Registry
-     8.12. Expert Review Instructions
+     8.9.  CWT Confirmation Methods Registry
+     8.10. The Well-Known URI Registry
+     8.11. Media Types Registry
+     8.12. CoAP Content-Formats Registry
+     8.13. Expert Review Instructions
    9.  References
      9.1.  Normative References
      9.2.  Informative References
@@ -2397,7 +2398,29 @@ Table of Contents
    |      |       |            | in message     |                   |
    +------+-------+------------+----------------+-------------------+
 
-8.9.  The Well-Known URI Registry
+8.9.  CWT Confirmation Methods Registry
+
+   IANA has extended the Value Type of the WT Confirmation Methods 'kid'
+   to the COSE Key Value Type int.  The resulting Value Type is bstr /
+   int.  The new updated content for the 'kid' method is shown in the
+   list below.
+
+   *  Confirmation Method Name: kid
+
+   *  Confirmation Method Description: Key Identifier
+
+   *  JWT Confirmation Method Name: kid
+
+   *  Confirmation Key: 3
+
+   *  Confirmation Value Type(s): bstr / int
+
+   *  Change Controller: IESG
+
+   *  Specification Document(s): Section 3.4 of RFC 8747 [[This
+      document]]
+
+8.10.  The Well-Known URI Registry
 
    IANA has added the well-known URI "edhoc" to the Well-Known URIs
    registry.
@@ -2410,7 +2433,7 @@ Table of Contents
 
    *  Related information: None
 
-8.10.  Media Types Registry
+8.11.  Media Types Registry
 
    IANA has added the media type "application/edhoc" to the Media Types
    registry.
@@ -2454,7 +2477,7 @@ Table of Contents
 
    *  Change Controller: IESG
 
-8.11.  CoAP Content-Formats Registry
+8.12.  CoAP Content-Formats Registry
 
    IANA has added the media type "application/edhoc" to the CoAP
    Content-Formats registry.
@@ -2467,7 +2490,7 @@ Table of Contents
 
    *  Reference: [[this document]]
 
-8.12.  Expert Review Instructions
+8.13.  Expert Review Instructions
 
    The IANA Registries established in this document is defined as
    "Expert Review".  This section gives some general guidelines for what

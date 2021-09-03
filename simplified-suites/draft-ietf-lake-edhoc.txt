@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                       J.P. Preuß Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 4 March 2022                                           Ericsson
-                                                          31 August 2021
+Expires: 7 March 2022                                           Ericsson
+                                                        3 September 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 March 2022.
+   This Internet-Draft will expire on 7 March 2022.
 
 Copyright Notice
 
@@ -682,6 +682,7 @@ Table of Contents
      8 : {                                        /cnf/
        1 : {                                      /COSE_Key/
          1 : 1,                                   /kty/
+         2 : 0,                                   /kid/
         -1 : 4,                                   /crv/
         -2 : h'b1a3e89460e88d3a8d54211dc95f0b90   /x/
                3ff205eb71912d6db8f4af980d2db83a'
@@ -1312,13 +1313,14 @@ Table of Contents
 
    message_1 = (
      METHOD : int,
-     SUITES_I : [ 2* suite ] / suite,
+     SUITES_I : suites,
      G_X : bstr,
      C_I : bstr / int,
      ? EAD_1 : ead,
    )
 
    suite = int
+   suites = [ 2* suite ] / suite
 
    where:
 
@@ -1788,7 +1790,7 @@ Table of Contents
    +----------+---------------+----------------------------------------+
    |        1 | tstr          | Unspecified                            |
    +----------+---------------+----------------------------------------+
-   |        2 | SUITES_R      | Wrong selected cipher suite            |
+   |        2 | suites        | Wrong selected cipher suite            |
    +----------+---------------+----------------------------------------+
 
                 Figure 6: Error Codes and Error Information
@@ -1816,10 +1818,8 @@ Table of Contents
    cipher suite selected by the Initiator is not supported by the
    Responder, or if the Responder supports a cipher suite more preferred
    by the Initiator than the selected cipher suite, see Section 5.2.3.
-   ERR_INFO is of type SUITES_R:
-
-   SUITES_R : [ 2* suite ] / suite
-
+   ERR_INFO is of type suites containing a list of cipher suites that
+   the Responder supports.  We call the list of cipher suites SUITES_R.
    If the Responder does not support the selected cipher suite, then
    SUITES_R MUST include one or more supported cipher suites.  If the
    Responder does not support the selected cipher suite, but supports
@@ -3059,6 +3059,8 @@ C.2.  CDDL Definitions
 
    suite = int
 
+   suites = [ 2* suite ] / suite
+
    ead = 1* (
      type : int,
      ext_authz_data : any,
@@ -3066,7 +3068,7 @@ C.2.  CDDL Definitions
 
    message_1 = (
      METHOD : int,
-     SUITES_I : [ 2* suite ] / suite,
+     SUITES_I : suites,
      G_X : bstr,
      C_I : bstr / int,
      ? EAD_1 : ead,
@@ -3084,8 +3086,6 @@ C.2.  CDDL Definitions
    message_4 = (
      CIPHERTEXT_4 : bstr,
    )
-
-   SUITES_R : [ 2* suite ] / suite
 
    error = (
      ERR_CODE : int,

@@ -1819,16 +1819,17 @@ Table of Contents
    cipher suite selected by the Initiator is not supported by the
    Responder, or if the Responder supports a cipher suite more preferred
    by the Initiator than the selected cipher suite, see Section 5.2.3.
-   ERR_INFO is of type suites containing a list of cipher suites that
-   the Responder supports.  We call the list of cipher suites SUITES_R.
-   If the Responder does not support the selected cipher suite, then
-   SUITES_R MUST include one or more supported cipher suites, see
-   Section 5.2.1.  If the Responder does not support the selected cipher
-   suite, but supports another cipher suite in SUITES_I, then SUITES_R
-   MUST include the supported cipher suite in SUITES_I which is most
-   preferred by the Initiator.  If the Responder does not support any
-   cipher suite in SUITES_I, then it SHOULD include all its supported
-   cipher suites in SUITES_R in any order.
+   ERR_INFO is in this case denoted SUITES_R and is of type suites, see
+   Section 5.2.1).  If the Responder does not support the selected
+   cipher suite, then SUITES_R MUST include one or more supported cipher
+   suites.  If the Responder supports a cipher suite in SUITES_I other
+   than the selected cipher suite (independently of if the selected
+   cipher suite is supported or not) then SUITES_R MUST include the
+   supported cipher suite in SUITES_I which is most preferred by the
+   Initiator.  SUITES_R MAY include a single cipher suite, i.e. be
+   encoded as an int.  If the Responder does not support any cipher
+   suite in SUITES_I, then it SHOULD include all its supported cipher
+   suites in SUITES_R in any order.
 
 6.3.1.  Cipher Suite Negotiation
 

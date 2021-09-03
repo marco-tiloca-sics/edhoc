@@ -3267,7 +3267,9 @@ Appendix H.  Change Log
    RFC Editor: Please remove this appendix.
 
    Main changes: * SUITES_I simplified to only contain the selected and
-   more preferred suites
+   more preferred suites * Separate header parameters for CWT and UCCS *
+   Info is CBOR sequence and context is bstr * CWT Confirmation Method
+   kid extended to bstr / int
 
    *  From -08 to -09:
 

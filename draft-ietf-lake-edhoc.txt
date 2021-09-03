@@ -794,11 +794,11 @@ Table of Contents
    [I-D.ietf-cose-cbor-encoded-cert] and [I-D.ietf-cose-x509].
 
    Credentials of type CWT and UCCS are transported with the COSE header
-   parameter registered in Section 8.6:
+   parameters registered in Section 8.6:
 
    *  ID_CRED_x = { TBD1 : CWT }, for x = I or R,
 
-   *  ID_CRED_x = { TBD1 : UCCS }, for x = I or R.
+   *  ID_CRED_x = { TBD2 : UCCS }, for x = I or R.
 
    It is RECOMMENDED that ID_CRED_x uniquely identify the public
    authentication key as the recipient may otherwise have to try several
@@ -2352,15 +2352,19 @@ Table of Contents
 
    This document registers the following entries in the "COSE Header
    Parameters" registry under the "CBOR Object Signing and Encryption
-   (COSE)" heading.  The value of the 'cwt' header parameter is a CWT
-   [RFC8392] or an Unprotected CWT Claims Set, see Section 1.5.
+   (COSE)" heading.  The value of the 'cwt' header parameter is a COSE
+   Web Token (CWT) [RFC8392] and the value of the 'uccs' header
+   parameter is an Unprotected CWT Claims Set (UCCS), see Section 1.5.
 
-   +-----------+-------+----------------+------------------------------+
-   | Name      | Label | Value Type     | Description                  |
-   +===========+=======+================+==============================+
-   | cwt       |  TBD1 | COSE_Messages  | A CBOR Web Token (CWT) or an |
-   |           |       | / map          | Unprotected CWT Claims Set   |
-   +-----------+-------+----------------+------------------------------+
+   +------+-------+------------+----------------+-------------------+
+   +-----------+-------+----------------+---------------------------+
+   | Name      | Label | Value Type     | Description               |
+   +===========+=======+================+===========================+
+   | cwt       |  TBD1 | COSE_Messages  | A CBOR Web Token (CWT)    |
+   +-----------+-------+----------------+---------------------------+
+   | uccs      |  TBD2 | map            | An Unprotected CWT Claims |
+   |           |       |                | Set (UCCS)                |
+   +-----------+-------+----------------+----------------- ---------+
 
 8.7.  COSE Header Parameters Registry
 

@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                       J.P. Preuß Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 7 March 2022                                           Ericsson
-                                                        3 September 2021
+Expires: 8 March 2022                                           Ericsson
+                                                        4 September 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 March 2022.
+   This Internet-Draft will expire on 8 March 2022.
 
 Copyright Notice
 
@@ -365,15 +365,7 @@ Table of Contents
    *  A key material exporter and a key update function enabling forward
       secrecy.
 
-   *  Verification of a common preferred cipher suite:
-
-      -  The Initiator lists supported cipher suites in order of
-         preference, ending with the selected cipher suite for the
-         session.
-
-      -  The Responder verifies that the selected cipher suite is the
-         first supported cipher suite (or else rejects and states
-         supported cipher suites).
+   *  Verification of a common preferred cipher suite.
 
    *  Method types and error handling.
 

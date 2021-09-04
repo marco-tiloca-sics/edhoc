@@ -3265,6 +3265,8 @@ Appendix H.  Change Log
 
       -  Info is a CBOR sequence and context is a bstr
 
+      -  Added kid to UCCS example
+
       -  Separate header parameters for CWT and UCCS
 
       -  CWT Confirmation Method kid extended to bstr / int

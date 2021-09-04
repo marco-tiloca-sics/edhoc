@@ -2349,7 +2349,6 @@ Table of Contents
    Web Token (CWT) [RFC8392] and the value of the 'uccs' header
    parameter is an Unprotected CWT Claims Set (UCCS), see Section 1.5.
 
-   +------+-------+------------+----------------+-------------------+
    +-----------+-------+----------------+---------------------------+
    | Name      | Label | Value Type     | Description               |
    +===========+=======+================+===========================+
@@ -2357,7 +2356,7 @@ Table of Contents
    +-----------+-------+----------------+---------------------------+
    | uccs      |  TBD2 | map            | An Unprotected CWT Claims |
    |           |       |                | Set (UCCS)                |
-   +-----------+-------+----------------+----------------- ---------+
+   +-----------+-------+----------------+---------------------------+
 
 8.7.  COSE Header Parameters Registry
 

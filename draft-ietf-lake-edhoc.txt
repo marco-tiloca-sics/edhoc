@@ -108,11 +108,11 @@ Table of Contents
      7.5.  Denial-of-Service
      7.6.  Implementation Considerations
    8.  IANA Considerations
-     8.1.  EDHOC Exporter Label
+     8.1.  EDHOC Exporter Label Registry
      8.2.  EDHOC Cipher Suites Registry
      8.3.  EDHOC Method Type Registry
      8.4.  EDHOC Error Codes Registry
-     8.5.  EDHOC External Authorization Data
+     8.5.  EDHOC External Authorization Data Registry
      8.6.  COSE Header Parameters Registry
      8.7.  COSE Header Parameters Registry
      8.8.  COSE Key Common Parameters Registry
@@ -2210,7 +2210,7 @@ Table of Contents
 
 8.  IANA Considerations
 
-8.1.  EDHOC Exporter Label
+8.1.  EDHOC Exporter Label Registry
 
    IANA has created a new registry titled "EDHOC Exporter Label" under
    the new heading "EDHOC".  The registration procedure is "Expert
@@ -2333,7 +2333,7 @@ Table of Contents
    is a CDDL defined type, and Description is a text string.  The
    initial contents of the registry are shown in Figure 6.
 
-8.5.  EDHOC External Authorization Data
+8.5.  EDHOC External Authorization Data Registry
 
    IANA has created a new registry entitled "EDHOC External
    Authorization Data" under the new heading "EDHOC".  The registration

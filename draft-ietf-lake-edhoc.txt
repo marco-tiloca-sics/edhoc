@@ -2834,8 +2834,8 @@ A.2.  Deriving the OSCORE Security Context
    and Responder MAY agree out-of-band on a longer key_length than the
    default and on a different salt_length.
 
-Master Secret = EDHOC-Exporter( "OSCORE Master Secret", h'', key_length )
-Master Salt   = EDHOC-Exporter( "OSCORE Master Salt", h'', salt_length )
+ Master Secret = EDHOC-Exporter("OSCORE Master Secret", h'', key_length)
+ Master Salt   = EDHOC-Exporter("OSCORE Master Salt", h'', salt_length)
 
    *  The AEAD Algorithm is the application AEAD algorithm of the
       selected cipher suite for the EDHOC session.

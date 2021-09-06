@@ -5,8 +5,8 @@
 Network Working Group                                        G. Selander
 Internet-Draft                                       J.P. Preuß Mattsson
 Intended status: Standards Track                            F. Palombini
-Expires: 8 March 2022                                           Ericsson
-                                                        4 September 2021
+Expires: 10 March 2022                                          Ericsson
+                                                        6 September 2021
 
 
                Ephemeral Diffie-Hellman Over COSE (EDHOC)
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 March 2022.
+   This Internet-Draft will expire on 10 March 2022.
 
 Copyright Notice
 
@@ -950,8 +950,8 @@ Table of Contents
    )
 
    where ext_authz_data is authorization related data defined in a
-   separate specification and its type is an int.  Different types of
-   ext_authz_data are registered in Section 8.5.
+   separate specification and its type is an int.  There is a register
+   for different types of ext_authz_data, see Section 8.5.
 
    The EAD fields of EDHOC are not intended for generic application
    data.  Since data carried in EAD_1 and EAD_2 fields may not be
@@ -1815,8 +1815,8 @@ Table of Contents
    Responder, or if the Responder supports a cipher suite more preferred
    by the Initiator than the selected cipher suite, see Section 5.2.3.
    ERR_INFO is in this case denoted SUITES_R and is of type suites, see
-   Section 5.2.1).  If the Responder does not support the selected
-   cipher suite, then SUITES_R MUST include one or more supported cipher
+   Section 5.2.1.  If the Responder does not support the selected cipher
+   suite, then SUITES_R MUST include one or more supported cipher
    suites.  If the Responder supports a cipher suite in SUITES_I other
    than the selected cipher suite (independently of if the selected
    cipher suite is supported or not) then SUITES_R MUST include the
